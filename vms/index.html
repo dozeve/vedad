@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="bs">
+<head> 
+<meta charset="UTF-8" /> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+<title>Vedad Portfolio</title> 
+<meta name="description" content="Portfolio Vedad - web design, HTML, CSS, JavaScript"> 
+
+<!-- Font and icons --> 
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" /> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> 
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" /> 
+
+<style>.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 140px;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+ 
+:root { 
+--primary-color: #00abf0; 
+--bg-dark: #0a192f; 
+--bg-light: #ffffff; 
+--text-dark: #111; 
+--text-light: #f1f1f1; 
+--card-bg: #112240; 
+} 
+
+* { 
+margin: 0; 
+padding: 0; 
+box-sizing: border-box; 
+font-family: 'Inter', sans-serif; 
+scroll-behavior: smooth; 
+} 
+
+body { 
+background-color: var(--bg-dark); 
+color: var(--text-light); 
+transition: background 0.3s, color 0.3s; 
+} 
+
+.light-mode { 
+background-color: var(--bg-light); 
+color: var(--text-dark); 
+} 
+
+#progress-bar { 
+height: 4px; 
+background: var(--primary-color); 
+width: 0; 
+position: fixed;  
+left: 0; 
+z-index: 9999; 
+} 
+
+header { 
+position: fixed; 
+width: 100%; 
+padding: 20px 60px; 
+display: flex; 
+justify-content: space-between; 
+align-items: center; 
+background: rgba(255, 255, 255, 0.05); 
+backdrop-filter: blur(10px); 
+border-bottom: 1px solid rgba(255,255,255,0.1); 
+z-index: 1000; 
+} 
+
+header h1 { 
+font-size: 28px; 
+color: var(--primary-color); 
+} 
+
+nav a { 
+margin-left: 30px; 
+text-decoration: none; 
+font-size: 16px; 
+color: inherit; 
+transition: 0.3s; 
+} 
+
+nav a:hover { 
+color: var(--primary-color); 
+} 
+
+.toggle-mode { 
+background: none; 
+border: 2px solid var(--primary-color); 
+color: var(--primary-color); 
+padding: 5px 12px; 
+border-radius: 6px; 
+cursor: pointer; 
+margin-left: 20px; 
+} 
+
+.hero { 
+height: 100vh; 
+background: url('ai-generated-8999232_1280.jpg') no-repeat center center/cover; 
+display: flex; 
+align-items: center; 
+justify-content: center; 
+position: relative; 
+} 
+.clients-section {
+  padding: 60px 20px;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.clients-section .container {
+  max-width: 1100px;
+  margin: auto;
+}
+
+.clients-description {
+  font-size: 1.1em;
+  color: #555;
+  margin-bottom: 40px;
+}
+
+.client-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.client-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  width: 220px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.client-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.client-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.hero::before { 
+content: ""; 
+position: absolute; 
+cannon: 0; left: 0; 
+width: 100%; height: 100%; 
+background: rgba(0,0,0,0.6); 
+z-index: 0; 
+} 
+
+.hero-content { 
+position: relative; 
+z-index: 1; 
+text-align: center; 
+padding: 20px; 
+max-width: 700px; 
+} 
+
+.hero-content h1 { 
+font-size: 56px; 
+} 
+
+.hero-content p { 
+font-size: 22px; 
+margin-top: 10px; 
+} 
+
+#typing { 
+font-weight: bold; 
+color: var(--primary-color); 
+} 
+
+.btn { 
+display: inline-block; 
+margin-top: 30px; 
+background: var(--primary-color); 
+color: white; 
+padding: 12px 30px; 
+border-radius: 8px; 
+text-decoration: none; 
+font-weight: bold; 
+transition: 0.3s; 
+} 
+
+.btn:hover { 
+background: #008ec4; 
+} 
+
+section { 
+padding: 100px 60px; 
+} 
+
+.about, .projects, .contact { 
+display: flex; 
+flex-wrap: wrap; 
+align-items: center; 
+justify-content: center; 
+gap: 40px; 
+} 
+
+.about img { 
+width: 320px; 
+border-radius: 12px; 
+box-shadow: 0 8px 30px rgba(0,0,0,0.5); 
+} 
+
+.about-text, .project-text, .contact-text { 
+max-width: 600px; 
+} 
+
+.about-text h2, .project-text h2, .contact-text h2 { 
+font-size: 36px; 
+margin-bottom: 20px; 
+color: var(--primary-color); 
+} 
+
+.projects { 
+background: #0d243a; 
+} 
+
+.project-card { 
+background: var(--card-bg); 
+padding: 20px; 
+border-radius: 12px; 
+width: 300px; 
+box-shadow: 0 4px 20px rgba(0,0,0,0.4); 
+text-align: center; 
+transition: 0.4s ease; 
+} 
+
+.project-card:hover { 
+transform: translateY(-10px); 
+box-shadow: 0 10px 25px rgba(0, 171, 240, 0.3); 
+} 
+
+.project-card img { 
+width: 100%; 
+border-radius: 10px; 
+margin-bottom: 10px;
+} 
+
+.contact { 
+background: #112240; 
+} 
+
+.contact-form input, 
+.contact-form textarea { 
+width: 100%; 
+padding: 10px; 
+margin: 10px 0; 
+border: none; 
+border-radius: 6px; 
+} 
+
+.contact-info { 
+font-size: 18px; 
+line-height: 1.8; 
+} 
+
+.contact-info strong { 
+color: var(--primary-color); 
+} 
+
+.socials and { 
+font-size: 24px; 
+margin-right: 20px; 
+color: var(--primary-color); 
+} 
+
+footer { 
+background: #0a192f; 
+padding: 30px; 
+text-align: center; 
+font-size: 14px; 
+color: #bbb; 
+} /* === RESPONSIVE DESIGN ZA MOBITELE === */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    padding: 15px 20px;
+    align-items: flex-start;
+  }
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .hero-content h1 {
+    font-size: 36px;
+  }
+
+  .hero-content p {
+    font-size: 18px;
+  }
+
+  .about,
+  .projects,
+  .contact,
+  .clients,
+  .faq,
+  .timeline,
+  .services,
+  .skills {
+    flex-direction: column;
+    padding: 60px 20px;
+  }.projects-section {
+  padding: 60px 20px;
+  background-color: #0a192f;
+  text-align: center;
+}
+
+.projects-section .container {
+  max-width: 1100px;
+  margin: auto;
+}
+
+.projects-description {
+  font-size: 1.1em;
+  color: #ccc;
+  margin-bottom: 40px;
+}
+
+.project-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.project-card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 20px;
+  width: 300px;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+}
+
+.project-card img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.btn-project {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 16px;
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.btn-project:hover {
+  background: var(--primary-color);
+  color: white;
+}
+
+
+  .project-card,
+  .about img,
+  .about-text,
+  .contact-text {
+    width: 100%;
+    text-align: center;
+  }
+
+  .logo {
+    width: 120px;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 12px 20px;
+  }
+}
+
+</style>
+</head>
+<body> 
+<!-- Progress bar --> 
+<div id="progress-bar"></div> 
+
+<!-- Header --> 
+<!-- Header -->
+<header>
+  <div class="logo-container">
+    <img src="/logo.png" alt="Logo" class="logo" />
+
+
+  </div>
+  <nav>
+    <a href="#hero">Home</a>
+    <a href="#about">About Me</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+    <button class="toggle-mode" onclick="toggleMode()">🌙</button>
+  </nav>
+</header>
+ 
+
+<!-- Hero --> 
+<section class="hero" id="hero"> 
+<div class="hero-content" data-aos="fade-up"> 
+<h1>Vedad Muračević</h1> 
+<p>I am <span id="typing"></span></p> 
+<a href="#contact" class="btn">Contact me</a> 
+</div> 
+</section> 
+
+<!-- About me --> 
+<section class="about" id="about" data-aos="fade-right"> 
+  <img src="laptop-5673901_1920.jpg" alt="My picture" data-aos="zoom-in"> 
+  <div class="about-text" data-aos="fade-left"> 
+ <!-- Skills -->
+<section class="skills" id="skills" data-aos="fade-up">
+  <div class="project-text">
+    <h2>My Skills</h2>
+    <p>A snapshot of the tools and languages I work with:</p>
+  </div>
+  <div style="max-width: 700px; margin: 40px auto;">
+    <div style="margin-bottom: 20px;">
+      <label>HTML</label>
+      <div style="background: #ccc; height: 10px; border-radius: 5px;">
+        <div style="width: 90%; height: 10px; background: var(--primary-color); border-radius: 5px;"></div>
+      </div>
+    </div>
+    <div style="margin-bottom: 20px;">
+      <label>CSS</label>
+      <div style="background: #ccc; height: 10px; border-radius: 5px;">
+        <div style="width: 85%; height: 10px; background: var(--primary-color); border-radius: 5px;"></div>
+      </div>
+    </div>
+    <div style="margin-bottom: 20px;">
+      <label>JavaScript</label>
+      <div style="background: #ccc; height: 10px; border-radius: 5px;">
+        <div style="width: 70%; height: 10px; background: var(--primary-color); border-radius: 5px;"></div>
+      </div>
+    </div>
+    <div style="margin-bottom: 20px;">
+      <label>Figma / Design</label>
+      <div style="background: #ccc; height: 10px; border-radius: 5px;">
+        <div style="width: 60%; height: 10px; background: var(--primary-color); border-radius: 5px;"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Timeline -->
+<section class="timeline" id="timeline" data-aos="fade-up">
+  <div class="project-text">
+    <h2>My Journey</h2>
+    <p>Key moments in my learning and design career.</p>
+  </div>
+  <div style="max-width: 800px; margin: 40px auto; padding-left: 20px;">
+    <ul style="list-style: none; padding: 0;">
+      <li style="margin-bottom: 30px;">
+        <strong>2023:</strong> Started learning HTML & CSS via online tutorials.
+      </li>
+      <li style="margin-bottom: 30px;">
+        <strong>2024:</strong> Built my first responsive portfolio website.
+      </li>
+      <li style="margin-bottom: 30px;">
+        <strong>2024 - Summer:</strong> Learned JavaScript and made interactive to-do apps.
+      </li>
+      <li style="margin-bottom: 30px;">
+        <strong>2025:</strong> Working on real freelance projects and growing my brand.
+      </li>
+    </ul>
+  </div>
+</section>
+<!-- Testimonials -->
+<section class="testimonials" id="testimonials" data-aos="fade-up">
+  <div class="project-text">
+    <h2>What My Clients Say</h2>
+    <p>Feedback from people I've worked with:</p>
+  </div>
+  <div style="display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; margin-top: 40px;">
+    <div style="background: white; color: black; padding: 20px; border-radius: 12px; width: 300px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
+      <p>"Vedad was fantastic to work with! He delivered a modern design exactly as I imagined."</p>
+      <strong>- Amina, Startup Founder</strong>
+    </div>
+    <div style="background: white; color: black; padding: 20px; border-radius: 12px; width: 300px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
+      <p>"Professional, creative and reliable. Highly recommend him for web projects."</p>
+      <strong>- Marko, Freelancer</strong>
+    </div>
+    <div style="background: white; color: black; padding: 20px; border-radius: 12px; width: 300px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
+      <p>"Helped me build a great landing page for my product – super responsive and clean!"</p>
+      <strong>- Sarah, E-commerce Owner</strong>
+    </div>
+  </div>
+</section><section id="clients" class="clients-section" data-aos="fade-up">
+  <div class="container">
+    <h2>Concept Clients I've Designed For</h2>
+    <p class="clients-description">
+      These are fictional brands created for learning and showcasing my web design and development skills.
+    </p>
+    <div class="client-grid">
+      <div class="client-card">
+        <img src="images/cafe-logo.png" alt="Urban Café">
+        <h3>Urban Café</h3>
+        <p>Mock project for café website</p>
+      </div>
+      <div class="client-card">
+        <img src="images/bike-shop.png" alt="BikeZone">
+        <h3>BikeZone</h3>
+        <p>Concept store landing page</p>
+      </div>
+      <div class="client-card">
+        <img src="images/apartment-logo.png" alt="Vista Apartments">
+        <h3>Vista Apartments</h3>
+        <p>UI/UX design for rental platform</p>
+      </div>
+      <div class="client-card">
+        <img src="images/tech-startup.png" alt="TechieLab">
+        <h3>TechieLab</h3>
+        <p>Startup website concept</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq" data-aos="fade-up">
+  <div class="project-text">
+    <h2>Frequently Asked Questions</h2>
+    <p>Answers to common questions from clients and visitors.</p>
+  </div>
+  <div style="max-width: 800px; margin: 40px auto;">
+    <details style="margin-bottom: 20px;">
+      <summary style="cursor: pointer; font-weight: bold;">How long does it take to build a website?</summary>
+      <p style="margin-top: 10px;">It depends on the complexity. A basic website takes around 3–5 days, while larger projects may take longer.</p>
+    </details>
+    <details style="margin-bottom: 20px;">
+      <summary style="cursor: pointer; font-weight: bold;">Do you offer maintenance after the site is done?</summary>
+      <p style="margin-top: 10px;">Yes, I offer ongoing support and updates if needed.</p>
+    </details>
+    <details style="margin-bottom: 20px;">
+      <summary style="cursor: pointer; font-weight: bold;">Which technologies do you use?</summary>
+      <p style="margin-top: 10px;">Mainly HTML, CSS, JavaScript, and modern tools like Figma and GitHub.</p>
+    </details>
+    <details style="margin-bottom: 20px;">
+      <summary style="cursor: pointer; font-weight: bold;">Can I see samples of your work?</summary>
+      <p style="margin-top: 10px;">Yes! Scroll to the “Projects” section above to see my recent work.</p>
+    </details>
+  </div>
+</section>
+
+<h2>About me</h2> 
+<p>My name is Vedad, I am a young web designer and programmer from Bosnia and Herzegovina. I like to create modern and responsive websites using HTML, CSS and JavaScript. I study everyday and want to become a professional in this field.</p> 
+<a href="#" class="btn" download>Download CV</a> 
+</div> 
+</section> 
+<!-- Services -->
+<section class="services" id="services" data-aos="fade-up">
+  <div class="project-text">
+    <h2>Services</h2>
+    <p>Here’s what I can do for you:</p>
+  </div>
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin-top: 40px;">
+    <div style="background: var(--card-bg); padding: 30px; border-radius: 12px; width: 300px; box-shadow: 0 4px 20px rgba(0,0,0,0.4); text-align: center;">
+      <i class="fas fa-laptop-code" style="font-size: 40px; color: var(--primary-color);"></i>
+      <h3 style="margin: 20px 0 10px;">Web Design</h3>
+      <p>Modern and responsive websites tailored to your brand.</p>
+    </div>
+    <div style="background: var(--card-bg); padding: 30px; border-radius: 12px; width: 300px; box-shadow: 0 4px 20px rgba(0,0,0,0.4); text-align: center;">
+      <i class="fas fa-mobile-alt" style="font-size: 40px; color: var(--primary-color);"></i>
+      <h3 style="margin: 20px 0 10px;">Responsive Design</h3>
+      <p>Fully optimized for all devices – mobile, tablet, desktop.</p>
+    </div>
+    <div style="background: var(--card-bg); padding: 30px; border-radius: 12px; width: 300px; box-shadow: 0 4px 20px rgba(0,0,0,0.4); text-align: center;">
+      <i class="fas fa-bolt" style="font-size: 40px; color: var(--primary-color);"></i>
+      <h3 style="margin: 20px 0 10px;">Fast Delivery</h3>
+      <p>Quick turnaround time without sacrificing quality.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Projects --> 
+
+<!-- Clients -->
+<section class="clients" id="clients" data-aos="zoom-in">
+  <div class="project-text">
+    <h2>Clients I've Worked With</h2>
+    <p>Here are some of the clients I’ve collaborated with on web projects.</p>
+  </div>
+  <div class="client-logos" style="display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; margin-top: 40px;">
+    <img src="images/client1.png" alt="Client 1" style="height: 60px;">
+    <img src="images/client2.png" alt="Client 2" style="height: 60px;">
+    <img src="images/client3.png" alt="Client 3" style="height: 60px;">
+    <img src="images/client4.png" alt="Client 4" style="height: 60px;">
+  </div>
+</section><section id="projects" class="projects-section" data-aos="fade-up">
+  <div class="container">
+    <h2>My Projects</h2>
+    <p class="projects-description">
+      Some of the recent concept websites I've built during my learning journey.
+    </p>
+    <div class="project-grid">
+      <div class="project-card">
+        <img src="images/project-cafe.jpg" alt="Cafe Project">
+        <h3>CoffeeHouse Website</h3>
+        <p>A stylish and modern landing page for a local café with responsive layout.</p>
+        <a href="#" class="btn-project" target="_blank">View Project</a>
+      </div>
+      <div class="project-card">
+        <img src="images/project-bike.jpg" alt="Bike Store Project">
+        <h3>BikeZone E-commerce</h3>
+        <p>A clean and fast shop layout for a bicycle store built with HTML, CSS, JS.</p>
+        <a href="#" class="btn-project" target="_blank">View Project</a>
+      </div>
+      <div class="project-card">
+        <img src="images/project-apartments.jpg" alt="Apartments Project">
+        <h3>Vista Apartments</h3>
+        <p>A rental platform concept UI for showcasing apartment offers and contact info.</p>
+        <a href="#" class="btn-project" target="_blank">View Project</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- To-Do List -->
+<section class="projects" id="todo" data-aos="fade-up">
+  <div class="project-text">
+    <h2>My To-Do List</h2>
+    <p>Add and track tasks in real-time.</p>
+  </div>
+  <div style="background: white; color: black; padding: 20px; border-radius: 12px; max-width: 400px; margin: auto;">
+    <input type="text" id="taskInput" placeholder="Enter a task" style="width: 100%; padding: 10px; margin-bottom: 10px;">
+    <button onclick="addTask()" style="width: 100%; padding: 10px; background-color: #00abf0; color: white; border: none; border-radius: 8px;">Add Task</button>
+    <ul id="taskList" style="margin-top: 20px; padding-left: 20px;"></ul>
+  </div>
+</section>
+
+<!-- Contact --> 
+ <section class="contact" id="contact" data-aos="fade-up"> 
+  <div class="contact-text" data-aos="fade-left"> 
+
+<h2>Contact</h2> 
+<form class="contact-form"> 
+<input type="text" placeholder="First and last name" required> 
+<input type="email" placeholder="Email address" required> 
+<textarea rows="5" placeholder="Message" required></textarea> 
+<button class="btn" type="submit">Submit</button> 
+</form> 
+<p class="contact-info"> 
+<strong>Telephone:</strong> 064 402 7144<br> 
+<strong>Email:</strong> veddad89@gmail.com 
+</p> 
+<div class="social"> 
+<a href="#"><i class="fab fa-linkedin"></i></a> 
+<a href="#"><i class="fab fa-github"></i></a> 
+<a href="#"><i class="fab fa-instagram"></i></a> 
+</div> 
+</div> 
+</section> 
+
+<!-- Footer --> 
+<footer> 
+<p>&copy; 2025 Vedad Portfolio. All rights reserved.</p> 
+</footer> 
+
+<!-- Scripts --> 
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> 
+<script>
+  AOS.init();
+
+  function addTask() {
+    const taskInput = document.getElementById("taskInput");
+    const taskText = taskInput.value.trim();
+    if (taskText !== "") {
+      const li = document.createElement("li");
+      li.textContent = taskText;
+      li.style.margin = "8px 0";
+      li.style.cursor = "pointer";
+      li.onclick = () => li.remove(); // klikom briše
+      document.getElementById("taskList").appendChild(li);
+      taskInput.value = "";
+    }
+  }
+
+  // Typing text
+  const text = ["Web Designer", "Frontend Developer", "Creative Mind"];
+  let i = 0, j = 0, current = "", isDeleting = false;
+  function type() {
+    const display = document.getElementById("typing");
+    if (!display) return;
+    if (!isDeleting && j <= text[i].length) {
+      current = text[i].substring(0, j++);
+    } else if (isDeleting && j >= 0) {
+      current = text[i].substring(0, j--);
+    }
+    display.innerHTML = current;
+    if (j === text[i].length) isDeleting = true;
+    if (j === 0 && isDeleting) {
+      isDeleting = false;
+      i = (i + 1) % text.length;
+    }
+    setTimeout(type, isDeleting ? 50 : 150);
+  }
+  type();
+
+  // Tema (dark/light)
+  function toggleMode() {
+    document.body.classList.toggle("light-mode");
+  }
+
+  // Scroll progress bar
+  window.onscroll = () => {
+    let winScroll = document.documentElement.scrollTop;
+    let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    let scrolled = (winScroll / height) * 100;
+    document.getElementById("progress-bar").style.width = scrolled + "%";
+  };
+</script>
+
+
+</script>
+
+
+</script>
+</body>
+</html>
