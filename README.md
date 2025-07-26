@@ -1,2 +1,0 @@
-# vedad
-portfolio
