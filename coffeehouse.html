@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="bs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CoffeeHouse — Demo projekt | VM Web Studio</title>
+  <meta name="description" content="Demo landing za lokalni kafić — brz, moderan i fokusiran na rezervacije.">
+  <meta name="theme-color" content="#0b1530" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="CoffeeHouse — Demo projekt" />
+  <meta property="og:description" content="Brz, moderan landing fokusiran na rezervacije i konverziju." />
+  <meta property="og:image" content="project-cafe.jpg" />
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <style>
+    :root{--bg:#070d1e;--bg-2:#0b1530;--card:#0e1c3a;--text:#eaf3ff;--muted:#9fb1d6;--brand:#00c1ff;--radius:18px}
+    *{box-sizing:border-box} html{scroll-behavior:smooth}
+    body{margin:0;color:var(--text);font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,var(--bg),var(--bg-2))}
+    header{position:sticky;top:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;padding:12px 5vw;background:rgba(15,25,50,.42);backdrop-filter:blur(10px);border-bottom:1px solid #ffffff14}
+    .brand{display:flex;gap:10px;align-items:center}.brand img{width:38px;height:38px;border-radius:10px}
+    a,button{outline-offset:2px}
+    .btn{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 16px;border-radius:14px;border:none;cursor:pointer;font-weight:800;color:#052033;background:linear-gradient(180deg,#8ff0ff,#47d0ff);box-shadow:0 8px 18px #00b9ff33}
+    .btn-ghost{background:transparent;color:var(--text);border:2px solid #3b79ff42}
+    main{display:block} section{padding:70px 5vw}
+    .hero{min-height:68vh;display:grid;place-items:center;position:relative;text-align:center;overflow:hidden}
+    .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#061022cc 0%,#071022a8 40%,transparent 80%), center/cover no-repeat url('project-cafe.jpg');filter:brightness(.95)}
+    .hero > *{position:relative;z-index:1}
+    .title{font-size:clamp(36px,5vw,64px);line-height:1.02;margin:8px 0 10px;background:linear-gradient(90deg,#eaffff,#86eaff,#fff);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .muted{color:var(--muted)}
+    .wrap{max-width:1100px;margin:0 auto}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+    .card{background:var(--card);border-radius:18px;padding:18px;box-shadow:0 10px 22px rgba(0,0,0,.28);border:1px solid #1f2f5a}
+    .card h3{margin:6px 0 8px}
+    .badge{display:inline-block;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:800;background:#0b1530;border:1px solid #2a3c71;color:#9fdcff;letter-spacing:.4px}
+    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+    .ph{aspect-ratio:4/3;background:#10214a;border-radius:12px;border:1px solid #1f2f5a;display:grid;place-items:center}
+    footer{padding:22px 5vw;text-align:center;color:#a9b7d4;border-top:1px solid #ffffff12}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand"><img src="logo.png" alt="VM logo"><b>VM Web Studio</b></div>
+    <div>
+      <a class="btn-ghost btn" href="index.html#projects" aria-label="Nazad na portfolio"><i class="fa-solid fa-arrow-left"></i> Back</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="h-title">
+      <div class="wrap">
+        <span class="badge">DEMO</span>
+        <h1 id="h-title" class="title">CoffeeHouse</h1>
+        <p class="muted">Landing stranica za lokalni kafić — fokus na rezervacije, meni i lokaciju.</p>
+        <div style="margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+          <a class="btn" href="#sekcije"><i class="fa-solid fa-mug-hot"></i> Pogledaj sekcije</a>
+          <a class="btn-ghost btn" href="#rezultati"><i class="fa-solid fa-bolt"></i> Rezultati</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="o-projektu" aria-labelledby="p-title">
+      <div class="wrap grid">
+        <div class="card">
+          <h3 id="p-title">O projektu</h3>
+          <p class="muted">Jednostavan, brz i topao vizual. Primarni CTA: <b>Rezerviši sto</b>. Sekundarni: <b>Pogledaj meni</b>.</p>
+          <ul>
+            <li>Minimalan JS, visoki Core Web Vitals</li>
+            <li>Map link za navigaciju (Google/Apple)</li>
+            <li>Hero meni + dnevne ponude</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Tech</h3>
+          <p class="muted">HTML, CSS (grid/flex), lagani JS; optimizovane slike; a11y i semantika.</p>
+          <h3 style="margin-top:12px">Brzina</h3>
+          <ul>
+            <li>Lazy-load slika</li>
+            <li>Inline kritični CSS</li>
+            <li>Keširanje na CDN-u</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="sekcije" aria-labelledby="s-title">
+      <div class="wrap">
+        <h2 id="s-title">Ključne sekcije</h2>
+        <div class="grid" style="margin-top:12px">
+          <div class="card"><h3><i class="fa-solid fa-list"></i> Meni</h3><p class="muted">Kafe, čajevi, kolači — jasan cjenovnik i istaknute preporuke.</p></div>
+          <div class="card"><h3><i class="fa-solid fa-location-dot"></i> Lokacija</h3><p class="muted">Link ka mapi i radno vrijeme. CTA “Dođi danas”.</p></div>
+          <div class="card"><h3><i class="fa-solid fa-calendar-check"></i> Rezervacije</h3><p class="muted">Brza forma (EmailJS) i potvrda na email.</p></div>
+        </div>
+        <div class="gallery" style="margin-top:14px">
+          <div class="ph">Foto 1</div>
+          <div class="ph">Foto 2</div>
+          <div class="ph">Foto 3</div>
+          <div class="ph">Foto 4</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="rezultati" aria-labelledby="r-title">
+      <div class="wrap grid">
+        <div class="card">
+          <h3 id="r-title">Rezultati (demo)</h3>
+          <ul>
+            <li>+28% više upita za rezervaciju</li>
+            <li>CLS ~0.01, LCP &lt; 2.0s (desktop)</li>
+            <li>Povećan prosječni boravak na stranici</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Želiš sličan sajt?</h3>
+          <p class="muted">Javi se direktno kroz formu na glavnoj stranici.</p>
+          <a class="btn" href="index.html#contact"><i class="fa-solid fa-paper-plane"></i> Kontakt</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p class="muted">⚠️ Demo primjer za portfolio (nije stvarni klijent).</p>
+    © <span id="year"></span> Vedad Muračević — VM Web Studio.
+  </footer>
+  <script>document.getElementById('year').textContent=new Date().getFullYear()</script>
+</body>
+</html>

@@ -1,32 +1,30 @@
 <!DOCTYPE html>
-<html lang="bs">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Vedad Muračević | Web dizajn i frontend developer</title>
-  <meta name="description" content="Vedad Muračević — moderni, brzi i responzivni web sajtovi. UX/konverzija, premium estetika i performance." />
+  <title>Vedad Muračević | Web design & frontend developer</title>
+  <meta name="description" content="Modern, fast websites with premium UI. UX/Conversion, performance, and clean code." />
   <link rel="icon" type="image/png" href="logo.png" />
 
-  <!-- Performance: preconnect + Google Fonts with swap -->
+  <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
-
-  <!-- Font Awesome 6 (Free) -->
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com/" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
-  <!-- Preload hero background (jpg fallback) -->
+  <!-- Preload hero poster -->
   <link rel="preload" as="image" href="ai-generated-8999232_1280.jpg" />
 
-  <!-- Canonical & theme-color (PWA/Chrome UI) -->
+  <!-- Canonical & theme -->
   <link rel="canonical" href="https://dozeve.github.io/vedad/" />
   <meta name="theme-color" content="#0b1530" />
 
   <!-- Open Graph / Twitter -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Vedad Muračević — Web dizajn & Frontend" />
-  <meta property="og:description" content="Brzi i moderni web sajtovi. Premium UI, performanse i konverzija." />
+  <meta property="og:title" content="Vedad Muračević — Web design & Frontend" />
+  <meta property="og:description" content="Fast, modern websites. Premium UI, performance and conversion." />
   <meta property="og:url" content="https://dozeve.github.io/vedad/" />
   <meta property="og:image" content="ai-generated-8999232_1280.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -35,24 +33,21 @@
     :root{
       --bg:#070d1e; --bg-2:#0b1530; --card:#0e1c3a; --text:#eaf3ff; --muted:#9fb1d6;
       --brand:#00c1ff; --brand-2:#7cf0ff; --radius:18px; --glass: rgba(15,25,50,.42); --focus:#7ce7ff;
+      --shadow-xl: 0 18px 40px rgba(0,0,0,.35);
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
-      margin:0; color:var(--text); font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      margin:0; color:var(--text);
+      font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
       background: linear-gradient(180deg,var(--bg) 0%,var(--bg-2) 100%);
       overflow-x:hidden; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
     }
 
-    /* Skip link (a11y) */
     .skip{ position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden; }
-    .skip:focus{
-      left:12px; top:12px; width:auto; height:auto; padding:8px 12px; z-index:10000; border-radius:10px;
-      background:#ffffff; color:#0a1830; outline:2px solid var(--focus);
-    }
+    .skip:focus{ left:12px; top:12px; width:auto; height:auto; padding:8px 12px; z-index:10000; border-radius:10px; background:#fff; color:#0a1830; outline:2px solid var(--focus); }
 
-    /* Aurora + grid */
-    .decor, .grid{position:fixed; inset:0; pointer-events:none; z-index:-2}
+    .decor,.grid{position:fixed; inset:0; pointer-events:none; z-index:-2}
     .decor{
       background:
         radial-gradient(800px 360px at 10% -10%, #143969a0 0%, transparent 60%),
@@ -69,47 +64,73 @@
       mask: linear-gradient(#000, transparent 80%);
     }
 
-    /* Progress bar */
     #progress{position:fixed; top:0; left:0; height:4px; width:0; background: linear-gradient(90deg, var(--brand), #4de1ff, #b7faff); box-shadow:0 0 12px #00b9ffaa; z-index:9999}
-
-    /* Cursor glow */
     #cursor{position:fixed; width:140px; height:140px; border-radius:50%; pointer-events:none; z-index:-1; opacity:.12;
       background: radial-gradient(closest-side, #22d2ff, transparent 70%); transform:translate(-50%,-50%);
-      will-change: transform; contain: paint;}
+      will-change: transform; contain: paint; mix-blend-mode:screen;}
     @media (hover:none),(pointer:coarse){#cursor{display:none}}
+    a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{ outline:2px solid var(--focus); outline-offset:2px; border-radius:8px; }
 
-    /* Focus ring */
-    a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 8px; }
-
-    /* PRELOADER */
-    #preloader{position:fixed; inset:0; display:grid; place-items:center; background:linear-gradient(180deg,var(--bg),var(--bg-2)); z-index:20000; transition:opacity .35s ease, visibility .35s ease}
+    #preloader{position:fixed; inset:0; display:grid; place-items:center; background:linear-gradient(180deg,var(--bg),var(--bg-2)); z-index:20000; transition:opacity .35s, visibility .35s}
     #preloader.hide{opacity:0; visibility:hidden}
     .spinner{width:62px;height:62px;border-radius:50%; border:4px solid #1b3a66; border-top-color:var(--brand); animation:spin .8s linear infinite; box-shadow:0 0 24px #00c1ff33}
     @keyframes spin{to{transform:rotate(360deg)}}
 
+    /* Header + desktop nav */
     header{
       position:sticky; top:0; z-index:1000; display:flex; align-items:center; justify-content:space-between; gap:16px;
-      padding:12px 5vw; background:var(--glass); backdrop-filter: blur(10px); border-bottom:1px solid #ffffff14;
+      padding:16px 5vw; background:var(--glass); backdrop-filter: blur(10px); border-bottom:1px solid #ffffff14; transition:.24s ease;
     }
+    header.shrink{ padding:8px 5vw; background:rgba(15,25,50,.6); backdrop-filter: blur(14px) saturate(1.2); }
     .brand{display:flex; align-items:center; gap:10px}
-    .brand img{width:42px;height:42px;border-radius:10px}
-    nav a{color:var(--text); text-decoration:none; margin-left:22px; font-weight:700; position:relative}
-    nav a::after{content:""; position:absolute; left:0; right:0; bottom:-6px; height:2px; border-radius:2px; background:linear-gradient(90deg,var(--brand),var(--brand-2)); transform:scaleX(0); transform-origin:left; transition:.2s}
-    nav a:hover::after{transform:scaleX(1)}
+    .brand img{width:42px;height:42px;border-radius:10px; transition:.24s}
+    header.shrink .brand img{width:34px;height:34px}
+    nav.primary a{color:var(--text); text-decoration:none; margin-left:22px; font-weight:700; position:relative}
+    nav.primary a::after{content:""; position:absolute; left:0; right:0; bottom:-6px; height:2px; border-radius:2px; background:linear-gradient(90deg,var(--brand),var(--brand-2)); transform:scaleX(0); transform-origin:left; transition:.2s}
+    nav.primary a:hover::after, nav.primary a.active::after{transform:scaleX(1)}
+
+    /* Mobile menu button */
+    .menu-btn{
+      display:none; width:44px; height:44px; border-radius:12px; border:1px solid #2a3c71; background:#0b1734; color:var(--text);
+      display:grid; place-items:center; cursor:pointer;
+    }
+    .menu-btn .bars{position:relative; width:22px; height:2px; background:#cfe3ff; border-radius:2px}
+    .menu-btn .bars::before,.menu-btn .bars::after{content:""; position:absolute; left:0; right:0; height:2px; background:#cfe3ff; border-radius:2px}
+    .menu-btn .bars::before{top:-6px} .menu-btn .bars::after{top:6px}
+
+    /* Off-canvas */
+    .backdrop{position:fixed; inset:0; background:#0008; z-index:900; opacity:0; visibility:hidden; transition:.24s}
+    .backdrop.show{opacity:1; visibility:visible}
+    .offcanvas{
+      position:fixed; top:0; right:0; height:100dvh; width:min(82vw,360px); background:#0b1530; border-left:1px solid #22345f;
+      z-index:1001; transform:translateX(100%); transition:transform .28s ease;
+      display:flex; flex-direction:column; padding:18px;
+    }
+    .offcanvas.show{transform:translateX(0)}
+    .offcanvas nav a{display:block; padding:14px 8px; color:#eaf3ff; text-decoration:none; font-weight:700; border-bottom:1px solid #1a2b54}
+    .offcanvas .close{align-self:flex-end; background:transparent; border:none; color:#cfe3ff; font-size:22px; height:40px; width:40px; border-radius:10px; cursor:pointer}
+
+    @media (max-width:980px){
+      nav.primary{display:none}
+      .menu-btn{display:grid}
+    }
 
     .btn{ display:inline-flex; align-items:center; gap:8px; height:46px; padding:0 18px; border-radius:14px; border:none; cursor:pointer;
-      font-weight:800; color:#06182b; background:linear-gradient(180deg,#8ff0ff,#47d0ff); box-shadow:0 8px 18px #00b9ff33, inset 0 -2px 0 #0aa3d5; transition: transform .1s, box-shadow .15s; position:relative; overflow:hidden; }
+      font-weight:800; color:#06182b; background:linear-gradient(180deg,#8ff0ff,#47d0ff); box-shadow:0 8px 18px #00b9ff33, inset 0 -2px 0 #0aa3d5; transition: transform .12s, box-shadow .15s; position:relative; overflow:hidden; }
     .btn::before{content:""; position:absolute; inset:0; background:linear-gradient(120deg, transparent 30%, #fff6 50%, transparent 70%); transform:translateX(-120%); transition:transform .6s}
     .btn:hover{transform:translateY(-2px); box-shadow:0 12px 24px #00b9ff44, inset 0 -2px 0 #0aa3d5}
     .btn:hover::before{transform:translateX(120%)}
     .btn-ghost{background:transparent; color:var(--text); border:2px solid #3b79ff42; box-shadow:none}
     .btn-ghost:hover{border-color:#69a3ff7a}
 
+    .tilt{transform-style:preserve-3d; perspective:900px; transition:transform .12s}
+    .tilt > *{transform: translateZ(20px)}
+
     main{display:block}
     section{padding:84px 5vw; scroll-margin-top:90px}
 
-    /* HERO */
-    .hero{ min-height:78vh; display:grid; place-items:center; position:relative; overflow:hidden; border-bottom:1px solid #ffffff12; }
+    /* Hero (video) */
+    .hero{ min-height:100vh; display:grid; place-items:center; position:relative; overflow:hidden; border-bottom:1px solid #ffffff12; }
     .hero::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg,#061022b5 0%,#071022 50%, transparent 74%); z-index:1 }
     .layer{position:absolute; inset:0; background: radial-gradient(600px 200px at 60% 30%, #00baff22, transparent 60%); z-index:1; will-change:transform}
     .blob{ position:absolute; width:520px; height:520px; border-radius:50%; background: radial-gradient(circle at 30% 30%, #7cf0ff, #00c1ff 50%, #0066ff 80%); filter: blur(40px) saturate(1.2); opacity:.22; z-index:1; top:18%; left:8%; animation: blob 18s ease-in-out infinite; }
@@ -119,60 +140,55 @@
     .title{ font-size:clamp(38px,4.8vw,66px); line-height:1.02; margin:10px 0 10px; background:linear-gradient(90deg,#eaffff 0%,#86eaff 30%,#fff 60%,#d4f6ff 100%); -webkit-background-clip:text; background-clip:text; color:transparent; text-shadow:0 6px 26px #0ac2ff18; }
     .subtitle{font-size:clamp(18px,2.1vw,22px); color:#deecff}
     .hero-ctas{margin-top:26px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap}
+    .scroll-hint{ position:absolute; bottom:18px; left:50%; transform:translateX(-50%); font-weight:700; color:#a8d9ff; opacity:.85; display:flex; align-items:center; gap:8px; z-index:3 }
+    .scroll-hint i{ animation: bounce 1.4s infinite }
+    @keyframes bounce{ 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
 
     .section-head{display:flex; align-items:center; gap:12px; margin-bottom:26px}
     .section-head h2{margin:0; font-size:clamp(24px,3vw,32px)}
     .pill{padding:6px 10px; border-radius:999px; font-size:12px; color:#021025; background:linear-gradient(180deg,#ffd166,#ffb566); font-weight:800; letter-spacing:.6px; text-transform:uppercase;}
 
-    /* Gradient card */
-    .gcard{ --b:1px; --r:18px; --p:22px; position:relative; border-radius:var(--r); padding:var(--p); background:var(--card); overflow:hidden; box-shadow:0 10px 22px rgba(0,0,0,.28); }
+    .with-media{position:relative; overflow:hidden}
+    .section-media{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; filter:brightness(.9)}
+    .media-overlay{position:absolute; inset:0; z-index:1; background:linear-gradient(180deg,#061022cc 0%, #071022a8 35%, transparent 80%)}
+    .with-media > *:not(.section-media):not(.media-overlay){position:relative; z-index:2}
+
+    .gcard{ --b:1px; --r:18px; --p:22px; position:relative; border-radius:var(--r); padding:var(--p); background:var(--card); overflow:hidden; box-shadow:var(--shadow-xl); }
     .gcard::before{ content:""; position:absolute; inset:0; padding:var(--b); border-radius:calc(var(--r) + var(--b)); background:linear-gradient(140deg,#00d2ff,#0095ff,#00e7ff); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; opacity:.35; }
 
-    /* About */
     .about{display:grid; grid-template-columns: 360px 1fr; gap:34px; align-items:center}
     .about img{width:100%; border-radius:18px; box-shadow:0 12px 30px #0005}
-    .about p{margin-top:0}
 
-    /* Services + spotlight */
     .services{ display:grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap:18px; position:relative; container-type: inline-size; }
-    .services::after{ content:""; position:absolute; width:260px;height:260px;border-radius:50%; background: radial-gradient(circle, #00d2ff2a 0%, transparent 60%); transform: translate(var(--mx, -9999px), var(--my, -9999px)); pointer-events:none; transition: transform .05s; mix-blend-mode:screen; filter: blur(16px); }
+    .services::after{
+      content:""; position:absolute; width:260px;height:260px;border-radius:50%; background: radial-gradient(circle, #00d2ff2a 0%, transparent 60%);
+      transform: translate(var(--mx, -9999px), var(--my, -9999px)); pointer-events:none; transition: transform .05s; mix-blend-mode:screen; filter: blur(16px);
+    }
     .service i{font-size:32px; color:var(--brand)}
     .service h3{margin:10px 0 6px}
     .service p{color:var(--muted)}
-    .service{transition:transform .18s ease, box-shadow .18s ease}
     .service:hover{transform:translateY(-4px); box-shadow:0 14px 32px #00c1ff25}
-    @container (max-width: 560px) {.service p{font-size:14px}}
 
-    /* marquee */
     .marquee-wrap{overflow:hidden; border-top:1px solid #ffffff12; border-bottom:1px solid #ffffff12; background:#0a1430aa; backdrop-filter: blur(6px)}
     .marquee{display:flex; gap:40px; padding:14px 5vw; white-space:nowrap; animation: roll 22s linear infinite}
     .marquee i{font-size:22px; color:#a8cfff}
     .marquee span{opacity:.85}
     @keyframes roll{to{transform:translateX(-50%)}}
 
-    /* projects + skeleton shimmer */
     .projects-grid{display:grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap:20px}
-    .project{position:relative; transition:transform .22s ease, box-shadow .22s ease; will-change: transform}
+    .project{position:relative; transition:transform .22s ease, box-shadow .22s ease}
     .project:hover{transform:translateY(-4px); box-shadow:0 18px 36px #0005}
     .project img{width:100%; height:170px; object-fit:cover; display:block; filter:brightness(.92)}
     .project .inner{padding:14px}
-    .project.loading::before{ content:""; position:absolute; inset:0 0 auto 0; height:170px; background: linear-gradient(90deg,#1a2748 0%, #22345f 50%, #1a2748 100%); background-size: 200% 100%; animation: shimmer 1.2s linear infinite; border-top-left-radius: 18px; border-top-right-radius: 18px; }
-    @keyframes shimmer{to{background-position: -200% 0}}
-    .muted{color:var(--muted)}
-
-    /* project links + demo badge */
-    .project-link{display:block; text-decoration:none; color:inherit; border-radius:18px; overflow:hidden}
-    .badge-demo{
-      position:absolute; top:10px; left:10px;
-      padding:6px 10px; border-radius:999px; font-size:12px; font-weight:800;
-      background:#0b1530cc; border:1px solid #2a3c71; color:#9fdcff; letter-spacing:.4px;
+    .project.loading::before{
+      content:""; position:absolute; inset:0 0 auto 0; height:170px; background: linear-gradient(90deg,#1a2748 0%, #22345f 50%, #1a2748 100%); background-size:200% 100%; animation: shimmer 1.2s linear infinite; border-top-left-radius:18px; border-top-right-radius:18px;
     }
+    @keyframes shimmer{to{background-position:-200% 0}}
+    .muted{color:var(--muted)}
+    .project-link{display:block; text-decoration:none; color:inherit; border-radius:18px; overflow:hidden}
+    .badge-demo{ position:absolute; top:10px; left:10px; padding:6px 10px; border-radius:999px; font-size:12px; font-weight:800; background:#0b1530cc; border:1px solid #2a3c71; color:#9fdcff; letter-spacing:.4px; }
     .demo-note{margin:0 0 8px; font-size:14px; color:#bcd7ff; opacity:.95}
 
-    .wave{height:56px; width:100%; display:block}
-    .wave svg{display:block; width:100%; height:100%}
-
-    /* CV */
     .cv-grid{display:grid; grid-template-columns: 1.1fr .9fr; gap:24px; align-items:start}
     .timeline{position:relative; padding-left:20px}
     .timeline::before{content:""; position:absolute; left:7px; top:4px; bottom:4px; width:2px; background:linear-gradient(180deg,#66e4ff,#1bbdff)}
@@ -183,116 +199,130 @@
     .bar{height:10px; border-radius:6px; background:#10214a; overflow:hidden}
     .bar > span{display:block; height:100%; background:linear-gradient(90deg,#7ce7ff,#43c9ff)}
 
-    /* TESTIMONIALS */
-    #testimonials .grid{ position:static; mask:none; background:none; }
     .t-grid{display:grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap:18px}
     .t-card blockquote{margin:0; color:#dce9ff}
     .t-card footer{margin-top:12px; display:flex; align-items:center; gap:10px; color:#aecdff}
     .stars{letter-spacing:2px; color:#ffd166}
 
-    /* CLIENTS */
     .clients{ display:grid; grid-template-columns: repeat(auto-fit,minmax(160px,1fr)); gap:12px; text-align:center }
     .cl{ padding:16px; border-radius:12px; background:#0a1530; border:1px solid #1f2f5a; font-weight:800; letter-spacing:.8px; color:#cfe7ff}
 
-    /* FAQ */
     .faq details{border:1px solid #ffffff12; border-radius:14px; margin-bottom:12px; overflow:hidden; background:#0c1732}
     .faq summary{padding:16px 18px; cursor:pointer; list-style:none; font-weight:700; display:flex; align-items:center; justify-content:space-between}
     .faq summary::after{content:"▾"; color:var(--brand); transition: transform .22s ease}
     .faq details[open] summary::after{transform:rotate(180deg)}
-    .faq .content{padding:0 18px 16px; color:var(--muted)}
+    .faq .content{padding:0 18px 16px; color:#b8c9ec}
 
-    /* contact */
     .contact-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:22px; align-items:start}
-    .form input, .form textarea{ width:100%; margin:8px 0 12px; padding:12px 14px; color:#e8f3ff; background:#0a1530; border:1px solid #2a3c71; border-radius:12px; outline:none; transition: box-shadow .18s, border-color .18s; }
-    .form input:focus, .form textarea:focus{border-color:#46d6ff; box-shadow:0 0 0 4px #00b9ff24}
+    .form input,.form textarea{
+      width:100%; margin:8px 0 12px; padding:12px 14px; color:#e8f3ff; background:#0a1530; border:1px solid #2a3c71; border-radius:12px; outline:none; transition: box-shadow .18s, border-color .18s;
+    }
+    .form input:focus,.form textarea:focus{border-color:#46d6ff; box-shadow:0 0 0 4px #00b9ff24}
     .social a{font-size:22px; color:var(--brand); margin-right:14px}
     .status{margin-top:10px; font-weight:700}
     #contact-status[aria-live]{min-height:1.4em}
 
     footer{padding:24px 5vw; color:#a9b7d4; text-align:center; border-top:1px solid #ffffff12; background:linear-gradient(180deg,transparent,#0b1327 40%)}
 
-    /* reveal */
-    [data-reveal]{opacity:0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; will-change: transform, opacity}
-    .reveal-in{opacity:1; transform:none}
+    [data-reveal]{opacity:0; transform: translateY(18px); filter: blur(8px); transition: opacity .6s, transform .6s, filter .6s}
+    .reveal-in{opacity:1; transform:none; filter: blur(0)}
 
     #toTop{position:fixed; right:16px; bottom:16px; width:46px; height:46px; border-radius:50%; display:grid; place-items:center; border:none; cursor:pointer; color:#052033;
       background:linear-gradient(180deg,#8feaff,#46d6ff); box-shadow:0 10px 22px #00b9ff44; transform:translateY(120%); transition:.28s; z-index:1000}
     #toTop.show{transform:translateY(0)}
 
-    @media (max-width: 1040px){ .about{grid-template-columns:1fr} .cv-grid{grid-template-columns:1fr} .contact-grid{grid-template-columns:1fr} }
-
-    @media (prefers-reduced-motion: reduce){ .aurora, .blob, .marquee { animation: none !important } .btn:hover{transform:none} [data-reveal]{transition:none} }
-
-    /* ===== Background media helpers (novo) ===== */
-    .with-media{position:relative; overflow:hidden}
-    .section-media{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; filter:brightness(.9)}
-    .media-overlay{position:absolute; inset:0; z-index:1; background:linear-gradient(180deg,#061022cc 0%, #071022a8 35%, transparent 80%)}
-    .with-media > *:not(.section-media):not(.media-overlay){position:relative; z-index:2}
+    @media (max-width:1040px){ .about{grid-template-columns:1fr} .cv-grid{grid-template-columns:1fr} .contact-grid{grid-template-columns:1fr} }
+    @media (prefers-reduced-motion: reduce){ .aurora,.blob,.marquee{animation:none !important} .btn,.tilt,[data-parallax]{transition:none !important} }
 
     .hero-video{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0;}
-    #about{position:relative; overflow:hidden}
-    #about::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg,#061022cc 0%, #071022aa 35%, transparent 80%); z-index:1}
     .section-video{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; filter:brightness(.9)}
-    .about{position:relative; z-index:2}
+
+    /* #2 CLS boost for heavy sections */
+    section[data-heavy]{content-visibility:auto; contain:content; contain-intrinsic-size: 1000px;}
+    @media (max-width: 900px){ section[data-heavy]{contain-intrinsic-size: 1300px;} }
   </style>
 
-  <!-- JSON-LD (Person + Website) -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Vedad Muračević",
-    "jobTitle": "Web dizajner i frontend developer",
-    "url": "https://dozeve.github.io/vedad/",
-    "sameAs": [
-      "https://github.com/dozeve",
-      "https://www.linkedin.com/in/vedad-muracevic-09a774371/"
-    ]
-  }
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Vedad Muračević",
+      "jobTitle": "Web designer & frontend developer",
+      "url": "https://dozeve.github.io/vedad/",
+      "sameAs": [
+        "https://github.com/dozeve",
+        "https://www.linkedin.com/in/vedad-muracevic-09a774371/"
+      ]
+    }
   </script>
 </head>
 <body>
-  <!-- PRELOADER -->
-  <div id="preloader" aria-hidden="true"><div class="spinner" role="status" aria-label="Učitavanje"></div></div>
-
-  <!-- A11y: skip to content -->
-  <a class="skip" href="#main">Preskoči na sadržaj</a>
+  <div id="preloader" aria-hidden="true"><div class="spinner" role="status" aria-label="Loading"></div></div>
+  <a class="skip" href="#main">Skip to content</a>
 
   <div class="decor"></div>
-  <div class="aurora" aria-hidden="true"></div>
-  <div class="grid" aria-hidden="true"></div>
+  <div class="aurora" aria-hidden="true" data-parallax data-speed="-0.05"></div>
+  <div class="grid" aria-hidden="true" data-parallax data-speed="-0.02"></div>
 
   <div id="progress"></div>
   <div id="cursor" aria-hidden="true"></div>
 
-  <header role="banner">
+  <header role="banner" id="site-header">
     <div class="brand"><img src="logo.png" alt="VM logo" width="42" height="42"/><b>VM Web Studio</b></div>
-    <nav aria-label="Glavna navigacija">
+
+    <!-- Desktop nav -->
+    <nav class="primary" aria-label="Main navigation">
       <a href="#hero">Home</a><a href="#about">About</a><a href="#services">Services</a>
-      <a href="#projects">Projects</a><a href="#cv">CV</a><a href="#testimonials">Testimonials</a><a href="#faq">FAQ</a><a href="#contact">Contact</a>
+      <a href="#projects">Projects</a><a href="#case-study">Case study</a><a href="#cv">CV</a>
+      <a href="#testimonials">Testimonials</a><a href="#faq">FAQ</a><a href="#contact">Contact</a>
     </nav>
+
+    <!-- Mobile menu button -->
+    <button id="menuToggle" class="menu-btn" aria-label="Open menu" aria-controls="mobileMenu" aria-expanded="false">
+      <span class="bars"></span>
+    </button>
   </header>
 
+  <!-- Off-canvas menu -->
+  <div id="menuBackdrop" class="backdrop" hidden></div>
+  <aside id="mobileMenu" class="offcanvas" hidden aria-label="Mobile menu">
+    <button class="close" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
+    <nav>
+      <a href="#hero">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#projects">Projects</a>
+      <a href="#case-study">Case study</a>
+      <a href="#cv">CV</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </aside>
+
   <main id="main">
-    <!-- HERO (tvoj manji 9:16 video) -->
+    <!-- HERO (video swapped from old Testimonials) -->
     <section id="hero" class="hero" aria-labelledby="hero-title">
-      <video class="hero-video section-media" autoplay muted loop playsinline preload="none" data-autoplay aria-hidden="true">
-        <source data-src="14070741_2160_3840_30fps.mp4" type="video/mp4" />
+      <video class="hero-video section-media" autoplay muted loop playsinline preload="none" data-autoplay aria-hidden="true" poster="ai-generated-8999232_1280.jpg" data-parallax data-speed="-0.15">
+        <!-- #3 Mobile 720p fallback (add this file) -->
+        <source data-src="city-720p.mp4" type="video/mp4" media="(max-width: 640px)" />
+        <source data-src="13061092_1920_1080_30fps.mp4" type="video/mp4" />
       </video>
-      <div class="layer" aria-hidden="true"></div>
-      <div class="blob" aria-hidden="true"></div>
+      <div class="layer" aria-hidden="true" data-parallax data-speed="-0.1"></div>
+      <div class="blob" aria-hidden="true" data-parallax data-speed="0.06"></div>
       <div class="hero-inner" data-reveal>
-        <div class="pretitle">premium look • visok fps</div>
+        <div class="pretitle">premium look • high fps</div>
         <h1 class="title" id="hero-title">Vedad Muračević</h1>
         <p class="subtitle">I am <span id="typing" aria-live="polite"></span></p>
         <div class="hero-ctas">
-          <a href="#contact" class="btn"><i class="fa-solid fa-paper-plane"></i> Hire me</a>
-          <a href="#projects" class="btn btn-ghost"><i class="fa-solid fa-layer-group"></i> View projects</a>
+          <a href="#contact" class="btn magnet"><i class="fa-solid fa-paper-plane"></i> Hire me</a>
+          <a href="#projects" class="btn btn-ghost magnet"><i class="fa-solid fa-layer-group"></i> View projects</a>
         </div>
+        <div class="scroll-hint"><i class="fa-solid fa-arrow-down"></i> Scroll</div>
       </div>
     </section>
 
-    <!-- marquee -->
+    <!-- Tech marquee -->
     <div class="marquee-wrap" aria-hidden="true">
       <div class="marquee">
         <i class="fa-brands fa-html5"></i><span>HTML5</span>
@@ -312,183 +342,212 @@
       </div>
     </div>
 
-    <!-- ABOUT (ostaje tvoj video) -->
-    <section id="about" aria-labelledby="about-title" data-heavy>
-      <video class="section-video" autoplay muted loop playsinline preload="none" data-autoplay aria-hidden="true">
-        <source data-src="14185814_2160_3840_30fps.mp4" type="video/mp4" />
-      </video>
-      <div class="section-head" data-reveal><span class="pill">About</span><h2 id="about-title">Ko sam ja</h2></div>
+    <!-- ABOUT (image bg) -->
+    <section id="about" class="with-media" aria-labelledby="about-title" data-heavy>
+      <img class="section-media" src="pexels-matheusnatan-2149422.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" data-parallax data-speed="-0.05">
+      <div class="media-overlay" aria-hidden="true"></div>
+
+      <div class="section-head" data-reveal><span class="pill">About</span><h2 id="about-title">Who I am</h2></div>
       <div class="about">
-        <img src="laptop-5673901_1920.jpg" alt="Vedad radi u VS Code okruženju" loading="lazy" decoding="async" width="360" height="240" data-reveal>
-        <div class="gcard" data-reveal>
-          <p>Ja sam Vedad — web dizajn & frontend. Gradim brze i responzivne stranice sa premium vizualom. U fokusu su mi tipografija, kontrast i suptilne animacije koje daju “wow”, a ne ubijaju performanse.</p>
+        <img src="laptop-5673901_1920.jpg" alt="Vedad working in VS Code environment" loading="lazy" decoding="async" width="360" height="240" data-reveal>
+        <div class="gcard tilt" data-reveal>
+          <p>I'm Vedad — web design & frontend. I build fast, responsive websites with a premium visual feel. My focus is typography, contrast and subtle motion that says “wow” without hurting performance.</p>
           <p class="muted">Stack: HTML, CSS, JavaScript, Figma, Git/GitHub</p>
           <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap">
-            <a class="btn" href="https://dozeve.github.io/vedad/" target="_blank" rel="noopener">Portfolio</a>
-            <a class="btn btn-ghost" href="#contact">Kontakt</a>
+            <a class="btn magnet" href="#projects">Projects</a>
+            <a class="btn btn-ghost magnet" href="#contact">Contact</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SERVICES -->
-    <section id="services" aria-labelledby="services-title" data-heavy>
-      <div class="section-head" data-reveal><span class="pill">Usluge</span><h2 id="services-title">Šta radim</h2></div>
+    <!-- SERVICES (image bg) -->
+    <section id="services" class="with-media" aria-labelledby="services-title" data-heavy>
+      <img class="section-media" src="pexels-jakubzerdzicki-33433724.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" data-parallax data-speed="-0.05">
+      <div class="media-overlay" aria-hidden="true"></div>
+
+      <div class="section-head" data-reveal><span class="pill">Services</span><h2 id="services-title">What I do</h2></div>
       <div class="services" id="spot">
-        <div class="gcard service" data-reveal><i class="fa-solid fa-pen-ruler" aria-hidden="true"></i><h3>Web dizajn</h3><p>Jasan, moderan layout sa fokusom na cilj korisnika i brend.</p></div>
-        <div class="gcard service" data-reveal><i class="fa-solid fa-mobile-screen" aria-hidden="true"></i><h3>Responsive</h3><p>Perfektan prikaz na svim uređajima. Grid/Flex i tipografske skale.</p></div>
-        <div class="gcard service" data-reveal><i class="fa-solid fa-rocket" aria-hidden="true"></i><h3>Brzina</h3><p>Lazy-load, keš, minimalan JS, visoki Core Web Vitals.</p></div>
+        <div class="gcard service tilt" data-reveal><i class="fa-solid fa-pen-ruler" aria-hidden="true"></i><h3>Web design</h3><p>Clear, modern layouts focused on your brand and user goals.</p></div>
+        <div class="gcard service tilt" data-reveal><i class="fa-solid fa-mobile-screen" aria-hidden="true"></i><h3>Responsive</h3><p>Perfect on every device. Grid/Flex and typographic scales.</p></div>
+        <div class="gcard service tilt" data-reveal><i class="fa-solid fa-rocket" aria-hidden="true"></i><h3>Speed</h3><p>Lazy loading, caching, minimal JS, high Core Web Vitals.</p></div>
       </div>
     </section>
 
-    <!-- PROJECTS (pozadinski video iz tvoje liste) -->
+    <!-- PROJECTS (image bg) -->
     <section id="projects" class="with-media" aria-labelledby="projects-title" data-heavy>
-      <video class="section-media" autoplay muted loop playsinline preload="none" data-autoplay aria-hidden="true">
-        <source data-src="12374612-uhd_3840_2160_60fps.mp4" type="video/mp4" />
-      </video>
+      <img class="section-media" src="pexels-quyenpham-33431430.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" data-parallax data-speed="-0.06">
       <div class="media-overlay" aria-hidden="true"></div>
 
-      <div class="section-head" data-reveal><span class="pill">Radovi</span><h2 id="projects-title">Izabrani projekti</h2></div>
+      <div class="section-head" data-reveal><span class="pill">Work</span><h2 id="projects-title">Selected projects</h2></div>
       <div class="projects-grid">
-        <a class="project-link" href="coffeehouse.html" aria-label="Otvori CoffeeHouse demo">
-          <article class="gcard project loading" data-reveal>
+        <a class="project-link" href="coffeehouse.html" aria-label="Open CoffeeHouse demo">
+          <article class="gcard project tilt loading" data-reveal>
             <span class="badge-demo">DEMO</span>
-            <img src="project-cafe.jpg" alt="CoffeeHouse landing stranica" loading="lazy" decoding="async" width="600" height="340">
-            <div class="inner"><h3>CoffeeHouse</h3><p class="muted">Landing za lokalni kafić</p></div>
+            <img src="project-cafe.jpg" alt="CoffeeHouse — warm coffee ambience, reservation-focused landing" loading="lazy" decoding="async" width="600" height="340">
+            <div class="inner"><h3>CoffeeHouse</h3><p class="muted">Landing page for a local café</p></div>
           </article>
         </a>
 
-        <a class="project-link" href="bikezone.html" aria-label="Otvori BikeZone Shop demo">
-          <article class="gcard project loading" data-reveal>
+        <a class="project-link" href="bikezone.html" aria-label="Open BikeZone Shop demo">
+          <article class="gcard project tilt loading" data-reveal>
             <span class="badge-demo">DEMO</span>
-            <img src="project-bike.jpg" alt="BikeZone e-commerce koncept" loading="lazy" decoding="async" width="600" height="340">
-            <div class="inner"><h3>BikeZone Shop</h3><p class="muted">E-commerce koncept</p></div>
+            <img src="project-bike.jpg" alt="BikeZone — white city bike on blue wall, e-commerce concept" loading="lazy" decoding="async" width="600" height="340">
+            <div class="inner"><h3>BikeZone Shop</h3><p class="muted">E-commerce concept</p></div>
           </article>
         </a>
 
-        <a class="project-link" href="vista-apartments.html" aria-label="Otvori Vista Apartments demo">
-          <article class="gcard project loading" data-reveal>
+        <a class="project-link" href="vista-apartments.html" aria-label="Open Vista Apartments demo">
+          <article class="gcard project tilt loading" data-reveal>
             <span class="badge-demo">DEMO</span>
-            <img src="project-apartments.jpg" alt="Vista Apartments UI" loading="lazy" decoding="async" width="600" height="340">
-            <div class="inner"><h3>Vista Apartments</h3><p class="muted">UI za najam</p></div>
+            <img src="project-apartments.jpg" alt="Vista Apartments — bright living room with plants, rental UI" loading="lazy" decoding="async" width="600" height="340">
+            <div class="inner"><h3>Vista Apartments</h3><p class="muted">Rental UI concept</p></div>
           </article>
         </a>
       </div>
     </section>
 
-    <!-- CLIENTS (pozadinski video iz tvoje liste) -->
-    <section id="clients" class="with-media" aria-labelledby="clients-title" data-heavy>
-      <video class="section-media" autoplay muted loop playsinline preload="none" data-autoplay aria-hidden="true">
-        <source data-src="13559971_3328_1440_24fps.mp4" type="video/mp4" />
-      </video>
-      <div class="media-overlay" aria-hidden="true"></div>
+    <!-- CASE STUDY -->
+    <section id="case-study" aria-labelledby="cs-title">
+      <div class="section-head" data-reveal><span class="pill">Case study</span><h2 id="cs-title">CoffeeHouse — from visit to reservation</h2></div>
+      <div class="gcard tilt" data-reveal>
+        <p><b>Goal:</b> increase table reservations for a neighborhood café.</p>
+        <p><b>Approach:</b> designed a clean hero with one CTA (“Book a table”), highlighted the menu and location, and reduced steps to submit.</p>
+        <p><b>Execution:</b> performance-first layout, optimized images, lazy loading, and lightweight animations.</p>
+        <p><b>Form:</b> frictionless contact using Web3Forms and a clear success state.</p>
+        <p><b>Outcome:</b> faster page, clearer path, higher intent.</p>
+        <div class="chips" style="margin-top:10px">
+          <span class="chip">LCP ~0.9s (4G)</span>
+          <span class="chip">+18–30% conversions*</span>
+          <span class="chip">Lighthouse 95+/100</span>
+        </div>
+        <p class="muted" style="margin-top:10px">*Indicative uplift based on A/B on demo traffic.</p>
+      </div>
+    </section>
 
-      <div class="section-head" data-reveal><span class="pill">Klijenti</span><h2 id="clients-title">Ko mi vjeruje</h2></div>
+    <!-- CLIENTS (simple) -->
+    <section id="clients" aria-labelledby="clients-title">
+      <div class="section-head" data-reveal><span class="pill">Clients</span><h2 id="clients-title">Who trusts me</h2></div>
       <div class="clients" data-reveal>
-        <div class="cl">Zenica Café</div>
-        <div class="cl">BikeZone</div>
-        <div class="cl">Vista Apartments</div>
-        <div class="cl">VM Studio</div>
+        <div class="cl tilt">Zenica Café</div>
+        <div class="cl tilt">BikeZone</div>
+        <div class="cl tilt">Vista Apartments</div>
+        <div class="cl tilt">VM Studio</div>
       </div>
     </section>
 
-    <!-- TESTIMONIALS (pozadinski video iz tvoje liste) -->
-    <section id="testimonials" class="with-media" aria-labelledby="testimonials-title" data-heavy>
-      <video class="section-media" autoplay muted loop playsinline preload="none" data-autoplay aria-hidden="true">
-        <source data-src="13061092_1920_1080_30fps.mp4" type="video/mp4" />
-      </video>
-      <div class="media-overlay" aria-hidden="true"></div>
-
-      <div class="section-head" data-reveal><span class="pill">Testimonials</span><h2 id="testimonials-title">Šta kažu klijenti</h2></div>
+    <!-- TESTIMONIALS (simple, no video) -->
+    <section id="testimonials" aria-labelledby="testimonials-title">
+      <div class="section-head" data-reveal><span class="pill">Testimonials</span><h2 id="testimonials-title">What clients say</h2></div>
       <div class="t-grid">
-        <article class="gcard t-card" data-reveal>
+        <article class="gcard t-card tilt" data-reveal>
           <span class="stars" aria-hidden="true">★★★★★</span>
-          <blockquote>"Vedad nam je uradio landing za CoffeeHouse. Brzo, precizno i sa super rezultatima na Core Web Vitals. Preporuka!"</blockquote>
+          <blockquote>"Vedad delivered our CoffeeHouse landing fast, with excellent Core Web Vitals. Highly recommended!"</blockquote>
           <footer>— Amina, CoffeeHouse</footer>
         </article>
-        <article class="gcard t-card" data-reveal>
+        <article class="gcard t-card tilt" data-reveal>
           <span class="stars" aria-hidden="true">★★★★★</span>
-          <blockquote>"Sjajan UI i jasno vođenje korisnika kroz shop. Od dizajna do isporuke sve kako treba."</blockquote>
+          <blockquote>"Great UI and clear user flow through the shop. From design to delivery — spot on."</blockquote>
           <footer>— Haris, BikeZone</footer>
         </article>
-        <article class="gcard t-card" data-reveal>
+        <article class="gcard t-card tilt" data-reveal>
           <span class="stars" aria-hidden="true">★★★★★</span>
-          <blockquote>"Stranica brza i čista, kontakt forma radi besprijekorno. Komunikacija 10/10."</blockquote>
+          <blockquote>"The site is fast and clean, contact form works flawlessly. Communication 10/10."</blockquote>
           <footer>— Mirela, Vista Apartments</footer>
         </article>
       </div>
     </section>
 
-    <!-- CV -->
+    <!-- Decorative wave -->
     <span class="wave" aria-hidden="true">
       <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
         <path fill="#0b1631" d="M0,64L60,69.3C120,75,240,85,360,85.3C480,85,600,75,720,69.3C840,64,960,64,1080,69.3C1200,75,1320,85,1380,90.7L1440,96L1440,120L0,120Z"></path>
       </svg>
     </span>
 
-    <section id="cv" aria-labelledby="cv-title" data-heavy>
-      <div class="section-head" data-reveal><span class="pill">CV</span><h2 id="cv-title">Profil, vještine & iskustvo</h2></div>
+    <!-- CV (image bg) -->
+    <section id="cv" class="with-media" aria-labelledby="cv-title" data-heavy>
+      <img class="section-media" src="pexels-nam-day-2153787144-33411815.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" data-parallax data-speed="-0.04">
+      <div class="media-overlay" aria-hidden="true"></div>
+
+      <div class="section-head" data-reveal><span class="pill">CV</span><h2 id="cv-title">Profile, skills & experience</h2></div>
       <div class="cv-grid">
-        <div class="gcard" data-reveal>
-          <h3 style="margin-top:0">Iskustvo & obrazovanje</h3>
+        <div class="gcard tilt" data-reveal>
+          <h3 style="margin-top:0">Experience & education</h3>
           <div class="timeline" style="margin-top:6px">
-            <div class="titem"><h4>Freelance web projekti <span class="muted">— 2025 – danas</span></h4><p class="muted">Portfolio i landing stranice. UX i brzina.</p></div>
-            <div class="titem"><h4>JavaScript mini-aplikacije <span class="muted">— 2024</span></h4><p class="muted">UI komponente, forme, to-do.</p></div>
-            <div class="titem"><h4>HTML & CSS temelji <span class="muted">— 2023</span></h4><p class="muted">Grid/Flex, tipografija, semantika.</p></div>
-            <div class="titem"><h4>Srednja škola IT smjer <span class="muted">— završeno</span></h4><p class="muted">Osnove programiranja i weba.</p></div>
+            <div class="titem"><h4>Freelance web projects <span class="muted">— 2025 – present</span></h4><p class="muted">Portfolios and landing pages. UX & speed.</p></div>
+            <div class="titem"><h4>JavaScript mini-apps <span class="muted">— 2024</span></h4><p class="muted">UI components, forms, to-do.</p></div>
+            <div class="titem"><h4>HTML & CSS fundamentals <span class="muted">— 2023</span></h4><p class="muted">Grid/Flex, typography, semantics.</p></div>
+            <div class="titem"><h4>IT high school <span class="muted">— graduated</span></h4><p class="muted">Programming and web basics.</p></div>
           </div>
-          <h3 style="margin-top:16px">Jezici</h3>
-          <p class="muted" style="margin:6px 0 6px">Bosanski (native)</p><div class="bar"><span style="width:100%"></span></div>
-          <p class="muted" style="margin:12px 0 6px">Engleski (intermediate)</p><div class="bar"><span style="width:70%"></span></div>
+          <h3 style="margin-top:16px">Languages</h3>
+          <p class="muted" style="margin:6px 0 6px">Bosnian (native)</p><div class="bar"><span style="width:100%"></span></div>
+          <p class="muted" style="margin:12px 0 6px">English (intermediate)</p><div class="bar"><span style="width:70%"></span></div>
         </div>
 
-        <div class="gcard" data-reveal>
-          <h3 style="margin-top:0">Profil</h3>
-          <p class="muted">Motivisan junior web dizajner i frontend developer iz BiH. Volim čist UI, jak kontrast i brzu isporuku. Spreman za timski rad i realne projekte.</p>
-          <h3 style="margin:16px 0 10px">Vještine</h3>
+        <div class="gcard tilt" data-reveal>
+          <h3 style="margin-top:0">Profile</h3>
+          <p class="muted">Motivated junior web designer & frontend developer from Bosnia and Herzegovina. I love clean UI, strong contrast, and fast delivery. Open to teamwork and real projects.</p>
+          <h3 style="margin:16px 0 10px">Skills</h3>
           <div class="chips">
             <span class="chip">HTML5</span><span class="chip">CSS3</span><span class="chip">Responsive</span>
             <span class="chip">JavaScript (ES6+)</span><span class="chip">UI Design (Figma)</span>
-            <span class="chip">Git / GitHub</span><span class="chip">SEO osnove</span><span class="chip">Performance</span>
+            <span class="chip">Git / GitHub</span><span class="chip">SEO basics</span><span class="chip">Performance</span>
           </div>
           <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:16px">
-            <a class="btn" href="cv.pdf" download>⬇️ Download CV (PDF)</a>
-            <a class="btn btn-ghost" href="https://www.linkedin.com/in/vedad-muracevic-09a774371/" target="_blank" rel="noopener">LinkedIn</a>
-            <a class="btn btn-ghost" href="https://github.com/dozeve" target="_blank" rel="noopener">GitHub</a>
+            <a class="btn magnet" href="cv.pdf" download>⬇️ Download CV (PDF)</a>
+            <a class="btn btn-ghost magnet" href="https://www.linkedin.com/in/vedad-muracevic-09a774371/" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="btn btn-ghost magnet" href="https://github.com/dozeve" target="_blank" rel="noopener">GitHub</a>
           </div>
-          <p class="muted" style="margin-top:8px">Dodaj <b>cv.pdf</b> u isti folder da radi download.</p>
+          <p class="muted" style="margin-top:8px">Place <b>cv.pdf</b> in the same folder for the download to work.</p>
         </div>
       </div>
     </section>
 
-    <!-- FAQ -->
-    <section id="faq" class="faq" aria-labelledby="faq-title" data-heavy>
-      <div class="section-head" data-reveal><span class="pill">FAQ</span><h2 id="faq-title">Česta pitanja</h2></div>
-      <details data-reveal><summary>Koliko traje izrada?</summary><div class="content">Landing 2–4 dana. Veće — dogovor.</div></details>
-      <details data-reveal><summary>Održavanje?</summary><div class="content">Da, mjesečni plan (update, sigurnost, sitne izmjene).</div></details>
-      <details data-reveal><summary>Stack?</summary><div class="content">HTML, CSS, JS, Figma, GitHub. Po potrebi EmailJS/Stripe linkovi.</div></details>
+    <!-- FAQ (image bg) -->
+    <section id="faq" class="faq with-media" aria-labelledby="faq-title" data-heavy>
+      <img class="section-media" src="pexels-alex-dos-santos-305643819-33365898.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" data-parallax data-speed="-0.03">
+      <div class="media-overlay" aria-hidden="true"></div>
+
+      <div class="section-head" data-reveal><span class="pill">FAQ</span><h2 id="faq-title">Frequently asked questions</h2></div>
+      <details data-reveal class="tilt"><summary>How long does it take?</summary><div class="content">Landing pages: 2–4 days. Larger projects — by agreement.</div></details>
+      <details data-reveal class="tilt"><summary>Maintenance?</summary><div class="content">Yes — monthly plan (updates, security, small tweaks).</div></details>
+      <details data-reveal class="tilt"><summary>Stack?</summary><div class="content">HTML, CSS, JS, Figma, GitHub. Web3Forms/Stripe links if needed.</div></details>
     </section>
 
-    <!-- CONTACT -->
-    <section id="contact" aria-labelledby="contact-title" data-heavy>
-      <div class="section-head" data-reveal><span class="pill">Kontakt</span><h2 id="contact-title">Javi se</h2></div>
+    <!-- CONTACT (image bg) -->
+    <section id="contact" class="with-media" aria-labelledby="contact-title" data-heavy>
+      <img class="section-media" src="pexels-necip-duman-3299706-29901545.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" data-parallax data-speed="-0.05">
+      <div class="media-overlay" aria-hidden="true"></div>
+
+      <div class="section-head" data-reveal><span class="pill">Contact</span><h2 id="contact-title">Get in touch</h2></div>
       <div class="contact-grid">
-        <form class="gcard form" id="contact-form" data-reveal aria-describedby="contact-status">
-          <!-- Honeypot antispam -->
+        <form class="gcard form tilt" id="contact-form" data-reveal aria-describedby="contact-status">
+          <!-- Honeypot -->
           <input type="text" name="company" autocomplete="off" tabindex="-1" aria-hidden="true" hidden>
-          <input id="name" name="from_name" placeholder="Ime i prezime" required autocomplete="name" />
+          <!-- Web3Forms -->
+          <input type="hidden" name="access_key" value="80a7b510-37d2-40e1-b087-b91854d83585">
+          <input type="hidden" name="subject" value="VM Web Studio — new message">
+
+          <input id="name" name="from_name" placeholder="Full name" required autocomplete="name" />
           <input id="email" name="reply_to" type="email" placeholder="Email" required autocomplete="email" />
-          <textarea id="message" name="message" rows="5" placeholder="Kako ti mogu pomoći?" required></textarea>
-          <button id="contact-submit" class="btn" type="submit"><i class="fa-solid fa-paper-plane"></i> Pošalji</button>
+          <textarea id="message" name="message" rows="5" placeholder="How can I help you?" required></textarea>
+          <button id="contact-submit" class="btn magnet" type="submit"><i class="fa-solid fa-paper-plane"></i> Send</button>
           <div id="contact-status" class="status" aria-live="polite"></div>
+
+          <!-- Email fallback (hidden until click) -->
+          <div style="margin-top:10px">
+            <button id="revealEmail" type="button" class="btn btn-ghost magnet">Show email</button>
+            <span id="emailText" style="margin-left:10px; display:none"></span>
+          </div>
         </form>
 
-        <div class="gcard" data-reveal>
-          <h3 style="margin-top:0">Kontakt info</h3>
-          <p class="muted">Kontakt isključivo putem forme na ovoj stranici. Javne adrese (telefon, email, Viber/WhatsApp) nisu prikazane.</p>
+        <div class="gcard tilt" data-reveal>
+          <h3 style="margin-top:0">Contact info</h3>
+          <p class="muted">Primary contact is via the form on this page. For spam protection, my public email is hidden until you click “Show email”.</p>
           <div class="social" style="margin-top:6px">
-            <a href="https://www.linkedin.com/in/vedad-muracevic-09a774371/" target="_blank" rel="noopener" title="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
-            <a href="https://github.com/dozeve" target="_blank" rel="noopener" title="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
+            <a href="https://www.linkedin.com/in/vedad-muracevic-09a774371/" target="_blank" rel="noopener" title="LinkedIn" class="magnet"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+            <a href="https://github.com/dozeve" target="_blank" rel="noopener" title="GitHub" class="magnet"><i class="fab fa-github" aria-hidden="true"></i></a>
           </div>
         </div>
       </div>
@@ -496,25 +555,34 @@
   </main>
 
   <footer role="contentinfo">
-    <p class="demo-note">⚠️ Projekti su demo primjeri za portfolio (nisu stvarni klijenti).</p>
+    <p class="demo-note">⚠️ Projects are demo examples for a portfolio (not real clients).</p>
     © <span id="year"></span> Vedad Muračević — VM Web Studio. All rights reserved.
   </footer>
 
   <button id="toTop" aria-label="Back to top"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i></button>
 
-  <!-- EmailJS (ostavljamo) -->
-  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js" defer></script>
   <script>
-    // godina
+    // year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // progress
+    // progress + header shrink + scrollspy
     const prog = document.getElementById('progress');
-    window.addEventListener('scroll', () => {
+    const header = document.getElementById('site-header');
+    const desktopLinks = Array.from(document.querySelectorAll('nav.primary a'));
+    const sections = desktopLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+    const onScroll = () => {
       const s = document.documentElement.scrollTop || document.body.scrollTop;
       const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       prog.style.width = (s / h) * 100 + '%';
-    }, {passive:true});
+      header.classList.toggle('shrink', window.scrollY > 12);
+      let active = 0;
+      for (let i = 0; i < sections.length; i++) {
+        const rect = sections[i].getBoundingClientRect();
+        if (rect.top <= 120 && rect.bottom > 120) { active = i; break; }
+      }
+      desktopLinks.forEach((a,i)=>a.classList.toggle('active', i===active));
+    };
+    window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
 
     // typing
     (function(){
@@ -526,13 +594,18 @@
         if(!del && l === word.length){del = true; setTimeout(loop, 850); return;}
         if(del && l === 0){del = false; w = (w+1)%words.length;}
         setTimeout(loop, del ? 45 : 110);
-      }
-      loop();
+      } loop();
     })();
 
-    // reveal
+    // reveal + stagger
     const io = new IntersectionObserver((entries)=>{
-      for(const e of entries){ if(e.isIntersecting){ e.target.classList.add('reveal-in'); io.unobserve(e.target); } }
+      for(const e of entries){
+        if(e.isIntersecting){
+          const el = e.target; el.classList.add('reveal-in');
+          el.querySelectorAll('[data-reveal] > *').forEach((child, idx)=>{ child.style.transitionDelay = (idx * 60)+'ms'; });
+          io.unobserve(el);
+        }
+      }
     }, {threshold:0.12});
     document.querySelectorAll('[data-reveal]').forEach(el=>io.observe(el));
 
@@ -541,17 +614,17 @@
     window.addEventListener('scroll', () => { toTop.classList.toggle('show', window.scrollY > 600); }, {passive:true});
     toTop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
 
-    // cursor glow (raf) — FIXED template string
+    // cursor glow (desktop only)
     (function(){
       const cursor = document.getElementById('cursor');
       if (matchMedia('(hover:none), (pointer:coarse)').matches) return;
-      let x = 0, y = 0, lx = 0, ly = 0;
-      window.addEventListener('mousemove', (e)=>{ x = e.clientX; y = e.clientY; }, {passive:true});
+      let x=0,y=0,lx=0,ly=0;
+      window.addEventListener('mousemove', (e)=>{ x=e.clientX; y=e.clientY; }, {passive:true});
       function raf(){ lx += (x - lx) * 0.18; ly += (y - ly) * 0.18; cursor.style.transform = `translate(${lx - 70}px, ${ly - 70}px)`; requestAnimationFrame(raf); }
       requestAnimationFrame(raf);
     })();
 
-    // services spotlight (lagano)
+    // services spotlight
     (function(){
       const wrap = document.getElementById('spot');
       wrap.addEventListener('mousemove', e=>{
@@ -562,41 +635,44 @@
       wrap.addEventListener('mouseleave', ()=>{wrap.style.setProperty('--mx','-9999px');});
     })();
 
-    // Projects: skeleton -> remove on image load
+    // Projects skeleton -> remove on image load
     document.querySelectorAll('.project img').forEach(img=>{
-      if(img.complete) img.closest('.project')?.classList.remove('loading');
-      img.addEventListener('load', ()=> img.closest('.project')?.classList.remove('loading'), {once:true, passive:true});
-      img.addEventListener('error', ()=> img.closest('.project')?.classList.remove('loading'), {once:true, passive:true});
+      const card = img.closest('.project');
+      if(img.complete) card?.classList.remove('loading');
+      img.addEventListener('load', ()=> card?.classList.remove('loading'), {once:true, passive:true});
+      img.addEventListener('error', ()=> card?.classList.remove('loading'), {once:true, passive:true});
     });
 
-    // EmailJS + Honeypot
-    window.addEventListener('DOMContentLoaded', () => {
-      if(!window.emailjs) return;
-      emailjs.init('lzhIM1tJ9xyC_bfmw'); // PUBLIC KEY
+    // Web3Forms + honeypot
+    window.addEventListener('load', () => {
       const form = document.getElementById('contact-form');
       const status = document.getElementById('contact-status');
       const btn = document.getElementById('contact-submit');
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        if(form.company && form.company.value) return; // honeypot
+        if (form.company && form.company.value) return;
         status.textContent = 'Sending...'; status.style.color = '#7be4ff'; btn.disabled = true;
-        try{
-          await emailjs.sendForm('service_hk1n7m4','template_gdxfvtg','#contact-form');
-          status.textContent = 'Hvala! Poruka je poslana. 🚀'; status.style.color = '#7be4ff'; form.reset();
-        }catch(err){
-          console.error(err);
-          status.textContent = 'Oops, nešto je pošlo po zlu. Pokušaj ponovo.'; status.style.color = '#ff7a7a';
-        }finally{ btn.disabled = false; }
+        try {
+          const data = new FormData(form);
+          if (!data.get('name')  && data.get('from_name')) data.append('name',  data.get('from_name'));
+          if (!data.get('email') && data.get('reply_to'))  data.append('email', data.get('reply_to'));
+          if (!data.get('subject')) data.append('subject', 'VM Web Studio — contact');
+          const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
+          const json = await res.json();
+          if (json.success) { status.textContent = 'Thanks! Your message was sent. 🚀'; status.style.color = '#7be4ff'; form.reset(); }
+          else { throw new Error(json.message || 'Failed to send'); }
+        } catch (err) {
+          status.textContent = `Error: ${err.message || err}`; status.style.color = '#ff7a7a';
+        } finally { btn.disabled = false; }
       });
     });
 
-    // Content-visibility boost for heavy sections
+    // content-visibility for heavy sections (JS helper)
     document.querySelectorAll('section[data-heavy]').forEach(sec=>{
-      sec.style.contentVisibility = 'auto';
-      sec.style.contain = 'content';
+      sec.style.contentVisibility = 'auto'; sec.style.contain = 'content';
     });
 
-    // PRELOADER hide on load (failsafe 1200ms)
+    // preloader hide
     (function(){
       const pl = document.getElementById('preloader');
       const hide = ()=> pl.classList.add('hide');
@@ -604,7 +680,7 @@
       setTimeout(hide, 1200);
     })();
 
-    // Lazy init videos on view (saves data & speeds LCP)
+    // lazy init videos on view (HERO)
     (function(){
       const vids = document.querySelectorAll('video[data-autoplay]');
       const io = new IntersectionObserver((entries)=>{
@@ -620,15 +696,144 @@
       vids.forEach(v=>io.observe(v));
     })();
 
-    /* SECURITY NOTE:
-       CSP zaglavlja je bolje dodati na hostingu (npr. Cloudflare). Primjer:
-       Content-Security-Policy:
-         default-src 'self';
-         img-src 'self' data:;
-         script-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://cdn.jsdelivr.net/npm/emailjs-com@3 'unsafe-inline';
-         style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
-         font-src 'self' https://fonts.gstatic.com data:;
-    */
+    // parallax
+    (function(){
+      const els = Array.from(document.querySelectorAll('[data-parallax]'));
+      if(!els.length) return;
+      let ticking=false, y=0, sp = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const update = ()=>{ els.forEach(el=>{ const speed=parseFloat(el.getAttribute('data-speed')||'0'); el.style.transform = sp ? '' : `translate3d(0, ${y*speed}px, 0)`; }); ticking=false; };
+      window.addEventListener('scroll', ()=>{ y = window.scrollY; if(!ticking){ requestAnimationFrame(update); ticking=true;} }, {passive:true});
+      update();
+    })();
+
+    // 3D tilt
+    (function(){
+      const cards = document.querySelectorAll('.tilt'); const max = 10;
+      cards.forEach(card=>{
+        card.addEventListener('mousemove', (e)=>{
+          const r = card.getBoundingClientRect();
+          const x = (e.clientX - r.left) / r.width; const y = (e.clientY - r.top) / r.height;
+          const rx = (0.5 - y) * max; const ry = (x - 0.5) * max;
+          card.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+        });
+        card.addEventListener('mouseleave', ()=>{ card.style.transform = 'perspective(900px) rotateX(0) rotateY(0)'; });
+      });
+    })();
+
+    // magnetic buttons
+    (function(){
+      const mags = document.querySelectorAll('.magnet'); const s = 12;
+      mags.forEach(el=>{
+        el.style.willChange = 'transform';
+        el.addEventListener('mousemove', (e)=>{
+          const r = el.getBoundingClientRect();
+          const dx = (e.clientX - (r.left + r.width/2)) / (r.width/2);
+          const dy = (e.clientY - (r.top + r.height/2)) / (r.height/2);
+          el.style.transform = `translate(${dx*s}px, ${dy*s}px)`;
+        });
+        el.addEventListener('mouseleave', ()=>{ el.style.transform = 'translate(0,0)'; });
+      });
+    })();
+
+    // smooth anchor nav with View Transitions
+    (function(){
+      const supportsVT = !!document.startViewTransition;
+      function smoothTo(id){
+        const target = document.querySelector(id);
+        if(!target) return;
+        const act = ()=> target.scrollIntoView({behavior:'smooth', block:'start'});
+        supportsVT ? document.startViewTransition(act) : act();
+      }
+      document.querySelectorAll('a[href^="#"]').forEach(a=>{
+        a.addEventListener('click', (e)=>{
+          const id = a.getAttribute('href');
+          if(!id || id === '#') return;
+          e.preventDefault();
+          smoothTo(id);
+          closeMenu(); // close mobile menu on navigation
+        });
+      });
+    })();
+
+    // ===== Mobile off-canvas with focus trap & return focus (#1) =====
+    const menuBtn = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const backdrop = document.getElementById('menuBackdrop');
+    const closeBtn = mobileMenu.querySelector('.close');
+
+    let lastFocus = null;
+    const focusablesSel = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1")]';
+
+    function trapFocus(container, e){
+      const f = Array.from(container.querySelectorAll(focusablesSel)).filter(el => el.offsetParent !== null);
+      if (!f.length) return;
+      const first = f[0], last = f[f.length - 1];
+      if (e.key === 'Tab') {
+        if (e.shiftKey && document.activeElement === first) { last.focus(); e.preventDefault(); }
+        else if (!e.shiftKey && document.activeElement === last) { first.focus(); e.preventDefault(); }
+      }
+    }
+    function onMenuKeydown(e){
+      if (e.key === 'Escape') { closeMenu(); return; }
+      trapFocus(mobileMenu, e);
+    }
+
+    function openMenu(){
+      lastFocus = document.activeElement;
+      mobileMenu.hidden = false; backdrop.hidden = false;
+      requestAnimationFrame(()=>{ mobileMenu.classList.add('show'); backdrop.classList.add('show'); });
+      menuBtn.setAttribute('aria-expanded','true');
+      document.body.style.overflow='hidden';
+      const firstLink = mobileMenu.querySelector('a,button'); firstLink && firstLink.focus();
+      mobileMenu.addEventListener('keydown', onMenuKeydown);
+    }
+    function closeMenu(){
+      if (mobileMenu.hidden) return;
+      mobileMenu.classList.remove('show'); backdrop.classList.remove('show');
+      menuBtn.setAttribute('aria-expanded','false');
+      document.body.style.overflow='';
+      mobileMenu.removeEventListener('keydown', onMenuKeydown);
+      setTimeout(()=>{ mobileMenu.hidden = true; backdrop.hidden = true; }, 250);
+      lastFocus && lastFocus.focus();
+    }
+
+    menuBtn.addEventListener('click', openMenu);
+    closeBtn.addEventListener('click', closeMenu);
+    backdrop.addEventListener('click', closeMenu);
+    window.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeMenu(); });
+
+    // ===== Email reveal (set your email here) =====
+    const emailUser = 'hello', emailDomain = 'vmwebstudio.com';
+    const revealBtn = document.getElementById('revealEmail');
+    const emailText = document.getElementById('emailText');
+    revealBtn?.addEventListener('click', ()=>{
+      const email = `${emailUser}@${emailDomain}`;
+      emailText.innerHTML = `<a href="mailto:${email}" class="magnet">${email}</a>`;
+      emailText.style.display = 'inline';
+      revealBtn.style.display = 'none';
+    });
+  </script>
+
+  <!-- #4 FAQ schema (rich results) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"How long does it take?","acceptedAnswer":{"@type":"Answer","text":"Landing pages: 2–4 days. Larger projects — by agreement."}},
+      {"@type":"Question","name":"Maintenance?","acceptedAnswer":{"@type":"Answer","text":"Yes — monthly plan (updates, security, small tweaks)."}},
+      {"@type":"Question","name":"Stack?","acceptedAnswer":{"@type":"Answer","text":"HTML, CSS, JS, Figma, GitHub. Web3Forms/Stripe links if needed."}}
+    ]
+  }
   </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+

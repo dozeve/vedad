@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="bs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vista Apartments — Demo projekt | VM Web Studio</title>
+  <meta name="description" content="Demo UI za najam apartmana — pregled, galerija i brza rezervacija.">
+  <meta name="theme-color" content="#0b1530" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Vista Apartments — Demo projekt" />
+  <meta property="og:description" content="Elegantni UI s galerijom, cijenama i kontaktom." />
+  <meta property="og:image" content="project-apartments.jpg" />
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <style>
+    :root{--bg:#070d1e;--bg-2:#0b1530;--card:#0e1c3a;--text:#eaf3ff;--muted:#9fb1d6;--brand:#00c1ff;--radius:18px}
+    *{box-sizing:border-box} html{scroll-behavior:smooth}
+    body{margin:0;color:var(--text);font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,var(--bg),var(--bg-2))}
+    header{position:sticky;top:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;padding:12px 5vw;background:rgba(15,25,50,.42);backdrop-filter:blur(10px);border-bottom:1px solid #ffffff14}
+    .brand{display:flex;gap:10px;align-items:center}.brand img{width:38px;height:38px;border-radius:10px}
+    .btn{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 16px;border-radius:14px;border:none;cursor:pointer;font-weight:800;color:#052033;background:linear-gradient(180deg,#8ff0ff,#47d0ff);box-shadow:0 8px 18px #00b9ff33}
+    .btn-ghost{background:transparent;color:var(--text);border:2px solid #3b79ff42}
+    main{display:block} section{padding:70px 5vw}
+    .hero{min-height:60vh;display:grid;place-items:center;text-align:center;background:linear-gradient(180deg,#061022cc,transparent), center/cover no-repeat url('project-apartments.jpg')}
+    .title{font-size:clamp(36px,5vw,64px);line-height:1.02;margin:8px 0 10px;background:linear-gradient(90deg,#eaffff,#86eaff,#fff);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .wrap{max-width:1100px;margin:0 auto}
+    .muted{color:var(--muted)}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+    .card{background:var(--card);border-radius:18px;padding:18px;box-shadow:0 10px 22px rgba(0,0,0,.28);border:1px solid #1f2f5a}
+    .room{border-radius:14px;overflow:hidden;border:1px solid #1f2f5a;background:#0a1530}
+    .room img{width:100%;height:180px;object-fit:cover;display:block}
+    .room .inner{padding:12px}
+    footer{padding:22px 5vw;text-align:center;color:#a9b7d4;border-top:1px solid #ffffff12}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand"><img src="logo.png" alt="VM logo"><b>VM Web Studio</b></div>
+    <div><a class="btn-ghost btn" href="index.html#projects"><i class="fa-solid fa-arrow-left"></i> Back</a></div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="h-title">
+      <div class="wrap">
+        <span class="badge" style="display:inline-block;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:800;background:#0b1530;border:1px solid #2a3c71;color:#9fdcff;letter-spacing:.4px">DEMO</span>
+        <h1 id="h-title" class="title">Vista Apartments</h1>
+        <p class="muted">UI za iznajmljivanje — galerija, cijene i brza rezervacija.</p>
+      </div>
+    </section>
+
+    <section class="wrap" aria-labelledby="o-title">
+      <div class="grid">
+        <div class="card">
+          <h3 id="o-title">O projektu</h3>
+          <p class="muted">Čist, premium izgled; fokus na pregled soba i jasan CTA “Rezerviši”.</p>
+          <ul>
+            <li>Galerija i opis sadržaja</li>
+            <li>Cijene po noćenju</li>
+            <li>Lokacija i kontakt</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Brzina & a11y</h3>
+          <p class="muted">Lazy-load, semantika, kontrast i tipografija optimizirani za čitljivost.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap" aria-labelledby="sobe-title">
+      <h2 id="sobe-title">Sobe</h2>
+      <div class="grid" role="list">
+        <article class="room" role="listitem">
+          <img src="project-apartments.jpg" alt="Studio Apartman">
+          <div class="inner">
+            <h3>Studio</h3>
+            <p class="muted">Kuhinja, Wi-Fi, klima — idealno za 2 osobe.</p>
+            <p><b>55€</b> / noć</p>
+            <a class="btn" href="index.html#contact"><i class="fa-solid fa-calendar-check"></i> Rezerviši</a>
+          </div>
+        </article>
+        <article class="room" role="listitem">
+          <img src="project-apartments.jpg" alt="Jednosoban apartman">
+          <div class="inner">
+            <h3>Jednosoban</h3>
+            <p class="muted">Dnevni boravak + spavaća, balkon s pogledom.</p>
+            <p><b>75€</b> / noć</p>
+            <a class="btn" href="index.html#contact"><i class="fa-solid fa-calendar-check"></i> Rezerviši</a>
+          </div>
+        </article>
+        <article class="room" role="listitem">
+          <img src="project-apartments.jpg" alt="Dvosoban apartman">
+          <div class="inner">
+            <h3>Dvosoban</h3>
+            <p class="muted">Prostor za porodice, privatni parking.</p>
+            <p><b>95€</b> / noć</p>
+            <a class="btn" href="index.html#contact"><i class="fa-solid fa-calendar-check"></i> Rezerviši</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="wrap" aria-labelledby="cta-title">
+      <div class="card">
+        <h3 id="cta-title">Želiš ovakav UI?</h3>
+        <p class="muted">Kontakt forma na glavnoj stranici — odgovorim brzo.</p>
+        <a class="btn" href="index.html#contact"><i class="fa-solid fa-paper-plane"></i> Kontakt</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p class="muted">⚠️ Demo primjer za portfolio (nije stvarni klijent).</p>
+    © <span id="year"></span> Vedad Muračević — VM Web Studio.
+  </footer>
+  <script>document.getElementById('year').textContent=new Date().getFullYear()</script>
+</body>
+</html>
