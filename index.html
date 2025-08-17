@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Vedad Muračević | Web design & frontend developer</title>
   <meta name="description" content="Modern, fast websites with premium UI. UX/Conversion, performance, and clean code." />
   <link rel="icon" type="image/png" href="logo.png" />
@@ -30,6 +30,15 @@
   <meta name="twitter:card" content="summary_large_image" />
 
   <style>
+    /* =====================
+       PERFORMANCE TWEAKS
+       - low-end mode (auto)
+       - pause heavy effects while scrolling
+       - remove big image filters (use overlay instead)
+       - throttle spotlight & tilt on desktop only
+       - GPU promote moving layers
+       ===================== */
+
     :root{
       --bg:#070d1e; --bg-2:#0b1530; --card:#0e1c3a; --text:#eaf3ff; --muted:#9fb1d6;
       --brand:#00c1ff; --brand-2:#7cf0ff; --radius:18px; --glass: rgba(15,25,50,.42); --focus:#7ce7ff;
@@ -48,20 +57,20 @@
     .skip:focus{ left:12px; top:12px; width:auto; height:auto; padding:8px 12px; z-index:10000; border-radius:10px; background:#fff; color:#0a1830; outline:2px solid var(--focus); }
 
     .decor,.grid{position:fixed; inset:0; pointer-events:none; z-index:-2}
-    .decor{
-      background:
+    .decor{ background:
         radial-gradient(800px 360px at 10% -10%, #143969a0 0%, transparent 60%),
         radial-gradient(700px 320px at 110% -10%, #0b2f57a0 0%, transparent 60%);
+      contain: paint;
     }
     .aurora{ position:fixed; inset:-20% -10% -20% -10%; z-index:-2; opacity:.18; filter: blur(24px) saturate(1.4);
       background: conic-gradient(from 140deg at 30% 20%, #21d4fd, #b721ff, #21d4fd);
-      animation: aur 14s linear infinite; will-change: transform; }
+      animation: aur 14s linear infinite; will-change: transform; contain: paint; }
     @keyframes aur{to{transform:rotate(360deg)}}
-    .grid{
-      background:
+    .grid{ background:
         repeating-linear-gradient(to right, #ffffff08 0 1px, transparent 1px 90px),
         repeating-linear-gradient(to bottom, #ffffff07 0 1px, transparent 1px 90px);
       mask: linear-gradient(#000, transparent 80%);
+      contain: paint;
     }
 
     #progress{position:fixed; top:0; left:0; height:4px; width:0; background: linear-gradient(90deg, var(--brand), #4de1ff, #b7faff); box-shadow:0 0 12px #00b9ffaa; z-index:9999}
@@ -80,6 +89,7 @@
     header{
       position:sticky; top:0; z-index:1000; display:flex; align-items:center; justify-content:space-between; gap:16px;
       padding:16px 5vw; background:var(--glass); backdrop-filter: blur(10px); border-bottom:1px solid #ffffff14; transition:.24s ease;
+      will-change: transform;
     }
     header.shrink{ padding:8px 5vw; background:rgba(15,25,50,.6); backdrop-filter: blur(14px) saturate(1.2); }
     .brand{display:flex; align-items:center; gap:10px}
@@ -123,7 +133,7 @@
     .btn-ghost{background:transparent; color:var(--text); border:2px solid #3b79ff42; box-shadow:none}
     .btn-ghost:hover{border-color:#69a3ff7a}
 
-    .tilt{transform-style:preserve-3d; perspective:900px; transition:transform .12s}
+    .tilt{transform-style:preserve-3d; perspective:900px; transition:transform .12s; will-change: transform}
     .tilt > *{transform: translateZ(20px)}
 
     main{display:block}
@@ -133,7 +143,7 @@
     .hero{ min-height:100vh; display:grid; place-items:center; position:relative; overflow:hidden; border-bottom:1px solid #ffffff12; }
     .hero::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg,#061022b5 0%,#071022 50%, transparent 74%); z-index:1 }
     .layer{position:absolute; inset:0; background: radial-gradient(600px 200px at 60% 30%, #00baff22, transparent 60%); z-index:1; will-change:transform}
-    .blob{ position:absolute; width:520px; height:520px; border-radius:50%; background: radial-gradient(circle at 30% 30%, #7cf0ff, #00c1ff 50%, #0066ff 80%); filter: blur(40px) saturate(1.2); opacity:.22; z-index:1; top:18%; left:8%; animation: blob 18s ease-in-out infinite; }
+    .blob{ position:absolute; width:520px; height:520px; border-radius:50%; background: radial-gradient(circle at 30% 30%, #7cf0ff, #00c1ff 50%, #0066ff 80%); filter: blur(40px) saturate(1.2); opacity:.22; z-index:1; top:18%; left:8%; animation: blob 18s ease-in-out infinite; will-change: transform }
     @keyframes blob{ 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(60px,20px) scale(1.06)} }
     .hero-inner{position:relative; z-index:2; text-align:center; max-width:980px; padding-top:12px}
     .pretitle{color:var(--muted); text-transform:uppercase; letter-spacing:2px; font-weight:800}
@@ -149,8 +159,8 @@
     .pill{padding:6px 10px; border-radius:999px; font-size:12px; color:#021025; background:linear-gradient(180deg,#ffd166,#ffb566); font-weight:800; letter-spacing:.6px; text-transform:uppercase;}
 
     .with-media{position:relative; overflow:hidden}
-    .section-media{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; filter:brightness(.9)}
-    .media-overlay{position:absolute; inset:0; z-index:1; background:linear-gradient(180deg,#061022cc 0%, #071022a8 35%, transparent 80%)}
+    .section-media{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; /* filter removed for perf */ filter:none; will-change: transform}
+    .media-overlay{position:absolute; inset:0; z-index:1; background:linear-gradient(180deg,#061022e6 0%, #071022bf 35%, transparent 80%)}
     .with-media > *:not(.section-media):not(.media-overlay){position:relative; z-index:2}
 
     .gcard{ --b:1px; --r:18px; --p:22px; position:relative; border-radius:var(--r); padding:var(--p); background:var(--card); overflow:hidden; box-shadow:var(--shadow-xl); }
@@ -231,15 +241,31 @@
       background:linear-gradient(180deg,#8feaff,#46d6ff); box-shadow:0 10px 22px #00b9ff44; transform:translateY(120%); transition:.28s; z-index:1000}
     #toTop.show{transform:translateY(0)}
 
+    /* GPU promotion for moving pieces */
+    .hero-video,.section-media,.layer,.blob,.grid,.tilt,.magnet{will-change: transform}
+
+    /* Mobile/layout tweaks */
     @media (max-width:1040px){ .about{grid-template-columns:1fr} .cv-grid{grid-template-columns:1fr} .contact-grid{grid-template-columns:1fr} }
+
     @media (prefers-reduced-motion: reduce){ .aurora,.blob,.marquee{animation:none !important} .btn,.tilt,[data-parallax]{transition:none !important} }
 
     .hero-video{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0;}
-    .section-video{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; filter:brightness(.9)}
+    .section-video{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0;}
 
     /* #2 CLS boost for heavy sections */
     section[data-heavy]{content-visibility:auto; contain:content; contain-intrinsic-size: 1000px;}
     @media (max-width: 900px){ section[data-heavy]{contain-intrinsic-size: 1300px;} }
+
+    /* ===== Scroll-time throttle (pause heavy effects) ===== */
+    body.is-scrolling .marquee{ animation-play-state: paused }
+    body.is-scrolling .tilt, body.is-scrolling .magnet{ transform:none !important; transition:none !important }
+    body.is-scrolling .blob, body.is-scrolling .aurora{ animation-play-state: paused }
+
+    /* ===== Low-end mode (auto) ===== */
+    .low-end .aurora, .low-end .blob{ display:none }
+    .low-end header{ backdrop-filter:none; background:rgba(15,25,50,.75) }
+    .low-end .marquee{ animation-duration:28s }
+    .low-end .gcard::before{ opacity:.25 }
   </style>
 
   <script type="application/ld+json">
@@ -565,6 +591,12 @@
     // year
     document.getElementById('year').textContent = new Date().getFullYear();
 
+    // ===== Low-end detection (auto degrade for smoother scroll) =====
+    (function(){
+      const low = (navigator.deviceMemory && navigator.deviceMemory <= 4) || matchMedia('(max-width: 900px)').matches;
+      if (low) document.documentElement.classList.add('low-end');
+    })();
+
     // progress + header shrink + scrollspy
     const prog = document.getElementById('progress');
     const header = document.getElementById('site-header');
@@ -583,6 +615,15 @@
       desktopLinks.forEach((a,i)=>a.classList.toggle('active', i===active));
     };
     window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+    // ===== During scroll: temporarily pause heavy effects =====
+    (function(){
+      let t; const body = document.body; const dur = 140; // ms after last scroll
+      window.addEventListener('scroll', ()=>{
+        body.classList.add('is-scrolling');
+        clearTimeout(t); t = setTimeout(()=> body.classList.remove('is-scrolling'), dur);
+      }, {passive:true});
+    })();
 
     // typing
     (function(){
@@ -624,15 +665,17 @@
       requestAnimationFrame(raf);
     })();
 
-    // services spotlight
+    // services spotlight (throttled via rAF) — desktop only
     (function(){
+      if (matchMedia('(hover:none), (pointer:coarse)').matches) return;
       const wrap = document.getElementById('spot');
+      let mx=-9999, my=-9999, rafId=0; // off by default
       wrap.addEventListener('mousemove', e=>{
         const r = wrap.getBoundingClientRect();
-        wrap.style.setProperty('--mx', (e.clientX - r.left - 130) + 'px');
-        wrap.style.setProperty('--my', (e.clientY - r.top - 130) + 'px');
+        mx = e.clientX - r.left - 130; my = e.clientY - r.top - 130;
+        if (!rafId){ rafId = requestAnimationFrame(()=>{ wrap.style.setProperty('--mx', mx + 'px'); wrap.style.setProperty('--my', my + 'px'); rafId = 0; }); }
       }, {passive:true});
-      wrap.addEventListener('mouseleave', ()=>{wrap.style.setProperty('--mx','-9999px');});
+      wrap.addEventListener('mouseleave', ()=>{ wrap.style.setProperty('--mx','-9999px'); wrap.style.setProperty('--my','-9999px'); });
     })();
 
     // Projects skeleton -> remove on image load
@@ -694,20 +737,29 @@
         });
       }, {rootMargin:'200px'});
       vids.forEach(v=>io.observe(v));
+
+      // Pause autoplay videos when tab is hidden (saves GPU)
+      document.addEventListener('visibilitychange', ()=>{
+        vids.forEach(v => { if (document.hidden) v.pause(); else v.play().catch(()=>{}); });
+      });
     })();
 
-    // parallax
+    // parallax (desktop only)
     (function(){
       const els = Array.from(document.querySelectorAll('[data-parallax]'));
       if(!els.length) return;
-      let ticking=false, y=0, sp = matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const update = ()=>{ els.forEach(el=>{ const speed=parseFloat(el.getAttribute('data-speed')||'0'); el.style.transform = sp ? '' : `translate3d(0, ${y*speed}px, 0)`; }); ticking=false; };
+      const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const touch = matchMedia('(hover:none), (pointer:coarse)').matches;
+      if (reduce || touch) return; // skip on mobile / reduced motion
+      let ticking=false, y=0;
+      const update = ()=>{ els.forEach(el=>{ const speed=parseFloat(el.getAttribute('data-speed')||'0'); el.style.transform = `translate3d(0, ${y*speed}px, 0)`; }); ticking=false; };
       window.addEventListener('scroll', ()=>{ y = window.scrollY; if(!ticking){ requestAnimationFrame(update); ticking=true;} }, {passive:true});
       update();
     })();
 
-    // 3D tilt
+    // 3D tilt (desktop only)
     (function(){
+      if (matchMedia('(hover:none), (pointer:coarse)').matches) return;
       const cards = document.querySelectorAll('.tilt'); const max = 10;
       cards.forEach(card=>{
         card.addEventListener('mousemove', (e)=>{
@@ -715,13 +767,14 @@
           const x = (e.clientX - r.left) / r.width; const y = (e.clientY - r.top) / r.height;
           const rx = (0.5 - y) * max; const ry = (x - 0.5) * max;
           card.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg)`;
-        });
+        }, {passive:true});
         card.addEventListener('mouseleave', ()=>{ card.style.transform = 'perspective(900px) rotateX(0) rotateY(0)'; });
       });
     })();
 
-    // magnetic buttons
+    // magnetic buttons (desktop only)
     (function(){
+      if (matchMedia('(hover:none), (pointer:coarse)').matches) return;
       const mags = document.querySelectorAll('.magnet'); const s = 12;
       mags.forEach(el=>{
         el.style.willChange = 'transform';
@@ -730,7 +783,7 @@
           const dx = (e.clientX - (r.left + r.width/2)) / (r.width/2);
           const dy = (e.clientY - (r.top + r.height/2)) / (r.height/2);
           el.style.transform = `translate(${dx*s}px, ${dy*s}px)`;
-        });
+        }, {passive:true});
         el.addEventListener('mouseleave', ()=>{ el.style.transform = 'translate(0,0)'; });
       });
     })();
@@ -828,6 +881,7 @@
   </script>
 </body>
 </html>
+
 
 
 
